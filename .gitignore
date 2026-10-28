@@ -1,0 +1,23 @@
+# Segredos
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Dados locais e saídas de teste
+*.log
+testes/resultados/
+*.bundle
+pousadas/*.implantacao.sql
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos temporários do Office
+~$*

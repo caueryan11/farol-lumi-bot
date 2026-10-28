@@ -1,0 +1,816 @@
+{
+  "ficticio": true,
+  "rascunho": false,
+  "aviso": "DADOS FICTÍCIOS para demonstração. Esta pousada não existe; nomes, contatos, preços e regras são inventados.",
+  "slug": "exemplo-refugio",
+  "nome": "Refúgio do Exemplo",
+  "cidade": "Praia do Exemplo, Cidade Exemplo/SC",
+  "dono": "Marcos",
+  "idiomas": [
+    "pt",
+    "es",
+    "en"
+  ],
+  "reserva_url": "",
+  "faq": [
+    {
+      "id": "sobre",
+      "pt": {
+        "p": "Como é a pousada?",
+        "r": "O Refúgio do Exemplo reúne duas casas contemporâneas na encosta do morro, na Praia do Exemplo, em Cidade Exemplo, com madeira, tijolo e pedra, portas de vidro para o horizonte e uma banheira externa em cada deck. É um lugar para descansar, com café com vista, trilha até o mirante e pôr do sol na banheira."
+      },
+      "es": {
+        "p": "¿Cómo es el alojamiento?",
+        "r": "El Refúgio do Exemplo reúne dos casas contemporáneas en la ladera del cerro, en la Praia do Exemplo, en Cidade Exemplo, con madera, ladrillo y piedra, puertas de vidrio hacia el horizonte y una bañera exterior en cada deck. Es un lugar para descansar, con desayuno con vista, sendero hasta el mirador y puesta de sol en la bañera."
+      },
+      "en": {
+        "p": "What is the place like?",
+        "r": "Refúgio do Exemplo has two contemporary houses set into the hillside at Praia do Exemplo in Cidade Exemplo, with wood, brick and stone, glass doors opening to the horizon and an outdoor tub on each deck. It is a place to unwind, with breakfast with a view, a trail to the lookout and sunsets from the tub."
+      }
+    },
+    {
+      "id": "localizacao",
+      "pt": {
+        "p": "Onde fica?",
+        "r": "Fica na Praia do Exemplo, em Cidade Exemplo/SC, atrás da fábrica da Mormaii. O endereço exato, a localização e o vídeo do caminho são enviados depois que a reserva estiver confirmada."
+      },
+      "es": {
+        "p": "¿Dónde queda?",
+        "r": "Queda en la Praia do Exemplo, en Cidade Exemplo/SC, detrás de la fábrica de Mormaii. La dirección exacta, la ubicación y el video del camino se envían después de tu confirmación de reserva."
+      },
+      "en": {
+        "p": "Where is it?",
+        "r": "It's at Praia do Exemplo, in Cidade Exemplo/SC, behind the Mormaii factory. The exact address, the location and the video of the route are sent after your booking confirmation."
+      }
+    },
+    {
+      "id": "distancia-praia",
+      "pt": {
+        "p": "É perto da praia?",
+        "r": "Sim, fica na própria Praia do Exemplo. Uma trilha curta leva ao mirante do Canto Sul, com vista da praia inteira."
+      },
+      "es": {
+        "p": "¿Está cerca de la playa?",
+        "r": "Sí, está en la propia Praia do Exemplo. Un sendero corto lleva al mirador del Canto Sul, con vista de toda la playa."
+      },
+      "en": {
+        "p": "Is it close to the beach?",
+        "r": "Yes, it is right at Praia do Exemplo. A short trail leads to the Canto Sul lookout, with a view of the whole beach."
+      }
+    },
+    {
+      "id": "mirante",
+      "pt": {
+        "p": "Tem algum mirante por perto?",
+        "r": "Sim, o mirante do Canto Sul, o melhor lugar para ver a Praia do Exemplo inteira. Fica a poucos passos das casas, a cerca de 120 a 200 metros dependendo da casa."
+      },
+      "es": {
+        "p": "¿Hay algún mirador cerca?",
+        "r": "Sí, el mirador del Canto Sul, el mejor lugar para ver toda la Praia do Exemplo. Está a pocos pasos de las casas, a unos 120 a 200 metros según la casa."
+      },
+      "en": {
+        "p": "Is there a lookout nearby?",
+        "r": "Yes, the Canto Sul lookout, the best spot to see the whole of Praia do Exemplo. It is a few steps from the houses, about 120 to 200 meters depending on the house."
+      }
+    },
+    {
+      "id": "praia",
+      "pt": {
+        "p": "Como é a Praia do Exemplo?",
+        "r": "É uma das praias mais preservadas de Santa Catarina, com poucas casas, mata atlântica e areia inclinada, e muitas vezes quase vazia mesmo na alta temporada. É famosa pelo surf, com ondas fortes e direitas."
+      },
+      "es": {
+        "p": "¿Cómo es la Praia do Exemplo?",
+        "r": "Es una de las playas más preservadas de Santa Catarina, con pocas casas, mata atlántica y arena inclinada, y muchas veces casi vacía incluso en temporada alta. Es famosa por el surf, con olas fuertes y derechas."
+      },
+      "en": {
+        "p": "What is Praia do Exemplo like?",
+        "r": "It is one of the most preserved beaches in Santa Catarina, with few houses, Atlantic forest and steep sand, and often almost empty even in high season. It is famous for surfing, with strong, consistent right-hand waves."
+      }
+    },
+    {
+      "id": "distancias-regiao",
+      "pt": {
+        "p": "Qual a distância do centro de Cidade Exemplo e de outras praias?",
+        "r": "A Exemplo fica a cerca de 2 km do centro de Cidade Exemplo, 6 km da Praia da Ferrugem e 18 km da Praia do Rosa."
+      },
+      "es": {
+        "p": "¿A qué distancia está del centro de Cidade Exemplo y de otras playas?",
+        "r": "La Exemplo está a unos 2 km del centro de Cidade Exemplo, 6 km de la Praia da Ferrugem y 18 km de la Praia do Rosa."
+      },
+      "en": {
+        "p": "How far is it from downtown Cidade Exemplo and other beaches?",
+        "r": "Exemplo is about 2 km from downtown Cidade Exemplo, 6 km from Praia da Ferrugem and 18 km from Praia do Rosa."
+      }
+    },
+    {
+      "id": "baleias",
+      "pt": {
+        "p": "Dá para ver baleias?",
+        "r": "Dá sim. Cidade Exemplo faz parte da Área de Proteção Ambiental da Baleia Franca, e entre julho e novembro as baleias-francas se aproximam da costa e podem ser vistas dos mirantes da região."
+      },
+      "es": {
+        "p": "¿Se pueden ver ballenas?",
+        "r": "Sí. Cidade Exemplo forma parte del Área de Protección Ambiental de la Ballena Franca, y entre julio y noviembre las ballenas francas se acercan a la costa y pueden verse desde los miradores de la región."
+      },
+      "en": {
+        "p": "Can I see whales?",
+        "r": "Yes. Cidade Exemplo is part of the Right Whale Environmental Protection Area, and between July and November right whales come close to the coast and can be seen from the region's lookouts."
+      }
+    },
+    {
+      "id": "como-chegar",
+      "pt": {
+        "p": "Como chego aí?",
+        "r": "O acesso é por Cidade Exemplo; a pousada fica atrás da fábrica da Mormaii. Os últimos trechos até a Exemplo podem ser de estrada de terra, então em dia de chuva é bom dirigir com calma. O endereço exato, a localização e o vídeo do caminho são enviados depois que a reserva estiver confirmada."
+      },
+      "es": {
+        "p": "¿Cómo llego?",
+        "r": "El acceso es por Cidade Exemplo; la posada queda detrás de la fábrica de Mormaii. Los últimos tramos hasta la Exemplo pueden ser de camino de tierra, así que en día de lluvia conviene manejar con calma. La dirección exacta, la ubicación y el video del camino se envían después de tu confirmación de reserva."
+      },
+      "en": {
+        "p": "How do I get there?",
+        "r": "Access is through Cidade Exemplo; the inn is behind the Mormaii factory. The last stretches to Exemplo can be dirt road, so on rainy days it's best to drive carefully. The exact address, the location and the video of the route are sent after your booking confirmation."
+      }
+    },
+    {
+      "id": "aeroporto",
+      "pt": {
+        "p": "Quanto tempo leva do aeroporto de Florianópolis?",
+        "r": "Cerca de 1h30 de carro do Aeroporto Internacional de Florianópolis até a Praia do Exemplo."
+      },
+      "es": {
+        "p": "¿Cuánto tarda desde el aeropuerto de Florianópolis?",
+        "r": "Unas 1h30 en auto desde el Aeropuerto Internacional de Florianópolis hasta la Praia do Exemplo."
+      },
+      "en": {
+        "p": "How long does it take from Florianópolis airport?",
+        "r": "About 1.5 hours by car from Florianópolis International Airport to Praia do Exemplo."
+      }
+    },
+    {
+      "id": "transfer",
+      "pt": {
+        "p": "Vocês têm transfer do aeroporto?",
+        "r": "Não tenho essa informação aqui. Me diz de onde você vem e o horário de chegada que eu passo para o Marcos te orientar."
+      },
+      "es": {
+        "p": "¿Tienen transfer desde el aeropuerto?",
+        "r": "No tengo esa información acá. Decime de dónde venís y el horario de llegada, y se lo paso a Marcos para que te oriente."
+      },
+      "en": {
+        "p": "Do you offer airport transfers?",
+        "r": "I don't have that information here. Tell me where you're coming from and your arrival time, and I'll pass it to Marcos so he can guide you."
+      }
+    },
+    {
+      "id": "acomodacoes",
+      "pt": {
+        "p": "Quais acomodações vocês têm?",
+        "r": "São duas casas: o Espaço Lagoa (até 4 hóspedes) e o Espaço Bosque (até 3 hóspedes). As duas têm 1 quarto, 1 cama de casal e 1 banheiro, além de banheira externa privativa no deck."
+      },
+      "es": {
+        "p": "¿Qué alojamientos tienen?",
+        "r": "Son dos casas: el Espaço Lagoa (hasta 4 huéspedes) y el Espaço Bosque (hasta 3 huéspedes). Ambas tienen 1 habitación, 1 cama de matrimonio y 1 baño, además de bañera exterior privada en el deck."
+      },
+      "en": {
+        "p": "What accommodations do you have?",
+        "r": "There are two houses: Espaço Lagoa (up to 4 guests) and Espaço Bosque (up to 3 guests). Both have 1 bedroom, 1 double bed and 1 bathroom, plus a private outdoor tub on the deck."
+      }
+    },
+    {
+      "id": "espaco-lagoa",
+      "pt": {
+        "p": "Como é o Espaço Lagoa?",
+        "r": "É a casa do pôr do sol: para até 4 hóspedes, com quarto que abre direto para o deck e a banheira externa voltada para a lagoa e as montanhas. Sala, jantar e cozinha completa dividem o mesmo ambiente, com parede de tijolos e mesa para seis."
+      },
+      "es": {
+        "p": "¿Cómo es el Espaço Lagoa?",
+        "r": "Es la casa de la puesta de sol: para hasta 4 huéspedes, con habitación que se abre directo al deck y la bañera exterior frente a la laguna y las montañas. Sala, comedor y cocina completa comparten el mismo ambiente, con pared de ladrillo y mesa para seis."
+      },
+      "en": {
+        "p": "What is Espaço Lagoa like?",
+        "r": "It is the sunset house: for up to 4 guests, with a bedroom that opens straight onto the deck and the outdoor tub facing the lagoon and mountains. Living, dining and a full kitchen share one space, with a brick wall and a table for six."
+      }
+    },
+    {
+      "id": "espaco-bosque",
+      "pt": {
+        "p": "Como é o Espaço Bosque?",
+        "r": "É a casa entre as árvores: para até 3 hóspedes, com deck suspenso sobre a mata, banheira externa, lareira a etanol e vista para a serra. É o lado mais recolhido do refúgio, com silêncio, sombra e canto de pássaros."
+      },
+      "es": {
+        "p": "¿Cómo es el Espaço Bosque?",
+        "r": "Es la casa entre los árboles: para hasta 3 huéspedes, con deck suspendido sobre el bosque, bañera exterior, chimenea a etanol y vista a la sierra. Es el lado más recogido del refugio, con silencio, sombra y canto de pájaros."
+      },
+      "en": {
+        "p": "What is Espaço Bosque like?",
+        "r": "It is the house among the trees: for up to 3 guests, with a deck over the forest, an outdoor tub, an ethanol fireplace and a view of the mountains. It is the most secluded side of the retreat, with quiet, shade and birdsong."
+      }
+    },
+    {
+      "id": "capacidade",
+      "pt": {
+        "p": "Quantas pessoas cabem em cada casa?",
+        "r": "O Espaço Lagoa recebe até 4 hóspedes e o Espaço Bosque até 3. As duas têm 1 quarto com 1 cama de casal."
+      },
+      "es": {
+        "p": "¿Cuántas personas caben en cada casa?",
+        "r": "El Espaço Lagoa recibe hasta 4 huéspedes y el Espaço Bosque hasta 3. Ambas tienen 1 habitación con 1 cama de matrimonio."
+      },
+      "en": {
+        "p": "How many people fit in each house?",
+        "r": "Espaço Lagoa sleeps up to 4 guests and Espaço Bosque up to 3. Both have 1 bedroom with 1 double bed."
+      }
+    },
+    {
+      "id": "banheira",
+      "pt": {
+        "p": "As casas têm banheira?",
+        "r": "Sim! Cada casa tem uma banheira externa privativa no deck, disponível o ano todo, 24 horas."
+      },
+      "es": {
+        "p": "¿Las casas tienen bañera?",
+        "r": "¡Sí! Cada casa tiene una bañera exterior privada en el deck, disponible todo el año, las 24 horas."
+      },
+      "en": {
+        "p": "Do the houses have a tub?",
+        "r": "Yes! Each house has a private outdoor tub on the deck, available all year round, 24 hours a day."
+      }
+    },
+    {
+      "id": "cozinha",
+      "pt": {
+        "p": "A casa tem cozinha?",
+        "r": "Tem sim: cozinha completa com geladeira, micro-ondas, utensílios e churrasqueira, integrada à sala de jantar."
+      },
+      "es": {
+        "p": "¿La casa tiene cocina?",
+        "r": "Sí: cocina completa con heladera, microondas, utensilios y parrilla, integrada al comedor."
+      },
+      "en": {
+        "p": "Does the house have a kitchen?",
+        "r": "Yes: a full kitchen with fridge, microwave, utensils and a barbecue grill, open to the dining room."
+      }
+    },
+    {
+      "id": "comodidades",
+      "pt": {
+        "p": "O que as casas oferecem?",
+        "r": "Ar-condicionado quente e frio, Wi-Fi, chuveiro externo com água quente, kit praia (cadeiras e guarda-sol), roupa de cama e banho, cortinas blackout e cobertores extras. O Espaço Lagoa tem ainda TV 50\" com Netflix e Prime Video, e o Espaço Bosque tem lareira a etanol."
+      },
+      "es": {
+        "p": "¿Qué ofrecen las casas?",
+        "r": "Aire acondicionado frío y calor, Wi-Fi, ducha exterior con agua caliente, kit de playa (sillas y sombrilla), ropa de cama y toallas, cortinas blackout y mantas extra. El Espaço Lagoa tiene además TV de 50\" con Netflix y Prime Video, y el Espaço Bosque tiene chimenea a etanol."
+      },
+      "en": {
+        "p": "What do the houses offer?",
+        "r": "Hot/cold air conditioning, Wi-Fi, an outdoor shower with hot water, a beach kit (chairs and umbrella), bed and bath linens, blackout curtains and extra blankets. Espaço Lagoa also has a 50\" TV with Netflix and Prime Video, and Espaço Bosque has an ethanol fireplace."
+      }
+    },
+    {
+      "id": "wifi",
+      "pt": {
+        "p": "Tem Wi-Fi?",
+        "r": "Tem sim, nas duas casas."
+      },
+      "es": {
+        "p": "¿Hay Wi-Fi?",
+        "r": "Sí, en las dos casas."
+      },
+      "en": {
+        "p": "Is there Wi-Fi?",
+        "r": "Yes, in both houses."
+      }
+    },
+    {
+      "id": "ar-condicionado",
+      "pt": {
+        "p": "Tem ar-condicionado?",
+        "r": "Sim, as duas casas têm ar-condicionado split quente e frio."
+      },
+      "es": {
+        "p": "¿Hay aire acondicionado?",
+        "r": "Sí, las dos casas tienen aire acondicionado split frío y calor."
+      },
+      "en": {
+        "p": "Is there air conditioning?",
+        "r": "Yes, both houses have a split air conditioner with hot and cold modes."
+      }
+    },
+    {
+      "id": "estacionamento",
+      "pt": {
+        "p": "Tem estacionamento?",
+        "r": "Sim, estacionamento gratuito dentro da propriedade. O Espaço Bosque tem ainda 1 vaga de garagem coberta."
+      },
+      "es": {
+        "p": "¿Hay estacionamiento?",
+        "r": "Sí, estacionamiento gratuito dentro de la propiedad. El Espaço Bosque tiene además 1 plaza de garaje cubierta."
+      },
+      "en": {
+        "p": "Is there parking?",
+        "r": "Yes, free parking on the property. Espaço Bosque also has 1 covered garage space."
+      }
+    },
+    {
+      "id": "bebe",
+      "pt": {
+        "p": "Tem berço ou cadeirão para bebê?",
+        "r": "No Espaço Lagoa, berço e cadeirão estão disponíveis sob pedido. Me avisa aqui que eu anoto no seu pedido para o Marcos."
+      },
+      "es": {
+        "p": "¿Hay cuna o silla alta para bebé?",
+        "r": "En el Espaço Lagoa, cuna y silla alta están disponibles bajo pedido. Avisame acá y lo anoto en tu pedido para Marcos."
+      },
+      "en": {
+        "p": "Is there a crib or high chair?",
+        "r": "At Espaço Lagoa, a crib and high chair are available on request. Let me know here and I'll add it to your request for Marcos."
+      }
+    },
+    {
+      "id": "reservar",
+      "pt": {
+        "p": "Como faço para reservar direto, sem o Airbnb?",
+        "r": "É por aqui mesmo: me passa a casa (Espaço Lagoa ou Espaço Bosque), a data de entrada, a de saída, quantos adultos e crianças (com as idades), se leva pet e o seu nome. Eu passo o pedido para o Marcos, que confirma a disponibilidade, o valor e a forma de pagamento com você por este WhatsApp. O formulário do site refugioexemplo.com.br/reservar/ abre esta mesma conversa já preenchida. Se preferir, as duas casas também estão no Airbnb."
+      },
+      "es": {
+        "p": "¿Cómo reservo directo, sin Airbnb?",
+        "r": "Es por acá mismo: pasame la casa (Espaço Lagoa o Espaço Bosque), la fecha de entrada, la de salida, cuántos adultos y niños (con las edades), si llevás mascota y tu nombre. Yo paso el pedido a Marcos, que confirma la disponibilidad, el valor y la forma de pago con vos por este WhatsApp. El formulario del sitio refugioexemplo.com.br/reservar/ abre esta misma conversación ya completada. Si preferís, las dos casas también están en Airbnb."
+      },
+      "en": {
+        "p": "How do I book direct, without Airbnb?",
+        "r": "You can do it right here: send me the house (Espaço Lagoa or Espaço Bosque), your check-in date, your check-out date, how many adults and children (with their ages), whether you're bringing a pet, and your name. I'll pass the request to Marcos, who confirms availability, price and payment with you through this WhatsApp. The form on the website refugioexemplo.com.br/reservar/ opens this same conversation already filled in. If you prefer, both houses are also on Airbnb."
+      }
+    },
+    {
+      "id": "vantagem-direta",
+      "pt": {
+        "p": "Vale a pena reservar direto?",
+        "r": "Na reserva direta você fala com o anfitrião desde o primeiro contato e não paga a taxa de serviço que as plataformas cobram do hóspede. O Marcos confirma as condições de cada data por aqui."
+      },
+      "es": {
+        "p": "¿Vale la pena reservar directo?",
+        "r": "En la reserva directa hablás con el anfitrión desde el primer contacto y no pagás la tarifa de servicio que las plataformas cobran al huésped. Marcos confirma las condiciones de cada fecha por acá."
+      },
+      "en": {
+        "p": "Is booking direct worth it?",
+        "r": "When booking direct you talk to the host from the first contact and don't pay the service fee platforms charge guests. Marcos confirms the conditions for each date right here."
+      }
+    },
+    {
+      "id": "contato",
+      "pt": {
+        "p": "Como falo com o anfitrião?",
+        "r": "Você já está no WhatsApp do Refúgio do Exemplo: eu respondo por aqui e, quando precisar falar com o Marcos, é só me dizer o assunto que eu passo o recado para ele. Também estamos no Instagram @refugioexemplo."
+      },
+      "es": {
+        "p": "¿Cómo hablo con el anfitrión?",
+        "r": "Ya estás en el WhatsApp del Refúgio do Exemplo: yo respondo por acá y, cuando necesités hablar con Marcos, decime el tema y le paso el mensaje. También estamos en Instagram @refugioexemplo."
+      },
+      "en": {
+        "p": "How do I contact the host?",
+        "r": "You're already on Refúgio do Exemplo's WhatsApp: I answer here and, whenever you need to talk to Marcos, just tell me what it's about and I'll pass the message to him. We're also on Instagram @refugioexemplo."
+      }
+    },
+    {
+      "id": "avaliacoes",
+      "pt": {
+        "p": "Como são as avaliações dos hóspedes?",
+        "r": "A nota é 4,96 em 86 avaliações verificadas no Airbnb, e o anfitrião é Superhost."
+      },
+      "es": {
+        "p": "¿Cómo son las evaluaciones de los huéspedes?",
+        "r": "La nota es 4,96 en 86 evaluaciones verificadas en Airbnb, y el anfitrión es Superhost."
+      },
+      "en": {
+        "p": "How are the guest reviews?",
+        "r": "The rating is 4.96 from 86 verified reviews on Airbnb, and the host is a Superhost."
+      }
+    },
+    {
+      "id": "valores",
+      "pt": {
+        "p": "Quanto custa a diária?",
+        "r": "A diária de cada casa (Espaço Lagoa ou Espaço Bosque) é de R$ 700 de domingo a quinta e R$ 750 no fim de semana, fora da alta temporada. Na alta temporada (15/12 a 15/03) é R$ 950, e no Réveillon (26/12 a 05/01, dentro da alta temporada) é R$ 1.600. Há uma taxa de limpeza de R$ 190 por estadia. Me conta as datas e quantas pessoas que eu passo o pedido para o Marcos confirmar a disponibilidade."
+      },
+      "es": {
+        "p": "¿Cuánto cuesta la noche?",
+        "r": "Cada casa (Espaço Lagoa o Espaço Bosque) cuesta R$ 700 la noche de domingo a jueves y R$ 750 el fin de semana, fuera de temporada alta. En temporada alta (15/12 al 15/03) es R$ 950, y en Año Nuevo (26/12 al 05/01, dentro de la temporada alta) es R$ 1.600. Hay una tarifa de limpieza de R$ 190 por estadía. Contame las fechas y cuántas personas y le paso el pedido a Marcos para confirmar la disponibilidad."
+      },
+      "en": {
+        "p": "How much is a night?",
+        "r": "Each house (Espaço Lagoa or Espaço Bosque) is R$ 700 per night Sunday to Thursday and R$ 750 on weekends, outside high season. In high season (Dec 15 to Mar 15) it is R$ 950, and over New Year (Dec 26 to Jan 5, within high season) it is R$ 1,600. There is a R$ 190 cleaning fee per stay. Tell me your dates and number of guests and I will pass the request to Marcos to confirm availability."
+      }
+    },
+    {
+      "id": "minimo-noites",
+      "pt": {
+        "p": "Tem mínimo de diárias?",
+        "r": "Sim: o mínimo é de 2 noites, inclusive na alta temporada. No Réveillon (26/12 a 05/01) o mínimo é de 7 noites."
+      },
+      "es": {
+        "p": "¿Hay un mínimo de noches?",
+        "r": "Sí: el mínimo es de 2 noches, también en temporada alta. En Año Nuevo (26/12 al 05/01) el mínimo es de 7 noches."
+      },
+      "en": {
+        "p": "Is there a minimum stay?",
+        "r": "Yes: the minimum is 2 nights, including high season. Over New Year (Dec 26 to Jan 5) the minimum is 7 nights."
+      }
+    },
+    {
+      "id": "reveillon",
+      "pt": {
+        "p": "Vocês têm vaga no Réveillon? Como funciona?",
+        "r": "No Réveillon (26/12 a 05/01) a diária é de R$ 1.600 por casa, com mínimo de 7 noites, mais a taxa de limpeza de R$ 190. Me passa as datas e quantas pessoas que eu encaminho para o Marcos confirmar a disponibilidade."
+      },
+      "es": {
+        "p": "¿Tienen lugar para Año Nuevo? ¿Cómo funciona?",
+        "r": "En Año Nuevo (26/12 al 05/01) la noche cuesta R$ 1.600 por casa, con un mínimo de 7 noches, más la tarifa de limpieza de R$ 190. Pasame las fechas y cuántas personas y se lo envío a Marcos para confirmar la disponibilidad."
+      },
+      "en": {
+        "p": "Do you have availability for New Year's? How does it work?",
+        "r": "Over New Year (Dec 26 to Jan 5) the rate is R$ 1,600 per house per night, with a 7-night minimum, plus the R$ 190 cleaning fee. Send me your dates and number of guests and I will forward it to Marcos to confirm availability."
+      }
+    },
+    {
+      "id": "taxa-limpeza",
+      "pt": {
+        "p": "Tem taxa de limpeza?",
+        "r": "Sim, R$ 190 por estadia, somada ao valor das diárias."
+      },
+      "es": {
+        "p": "¿Hay tarifa de limpieza?",
+        "r": "Sí, R$ 190 por estadía, que se suma al valor de las noches."
+      },
+      "en": {
+        "p": "Is there a cleaning fee?",
+        "r": "Yes, R$ 190 per stay, added to the nightly rate."
+      }
+    },
+    {
+      "id": "checkin",
+      "pt": {
+        "p": "Qual o horário de check-in e check-out?",
+        "r": "O check-in é a partir das 15h e o check-out até as 11h. O check-in é autônomo: as instruções de acesso chegam antes da sua chegada. Sempre que possível, o Marcos recebe os hóspedes pessoalmente."
+      },
+      "es": {
+        "p": "¿A qué hora es el check-in y el check-out?",
+        "r": "El check-in es a partir de las 15 h y el check-out hasta las 11 h. El check-in es autónomo: las instrucciones de acceso llegan antes de tu llegada. Siempre que puede, Marcos recibe a los huéspedes personalmente."
+      },
+      "en": {
+        "p": "What are the check-in and check-out times?",
+        "r": "Check-in is from 3 pm and check-out is by 11 am. Check-in is self-service: you get the access instructions before you arrive. Whenever possible, Marcos welcomes guests in person."
+      }
+    },
+    {
+      "id": "pagamento",
+      "pt": {
+        "p": "Como é o pagamento?",
+        "r": "O pagamento é por Pix, no valor total da reserva, para confirmar. Depois de confirmada a disponibilidade, o Marcos envia os dados pelo WhatsApp."
+      },
+      "es": {
+        "p": "¿Cómo es el pago?",
+        "r": "El pago es por Pix, por el valor total de la reserva, para confirmarla. Una vez confirmada la disponibilidad, Marcos envía los datos por WhatsApp."
+      },
+      "en": {
+        "p": "How do I pay?",
+        "r": "Payment is by Pix, for the full amount of the booking, to confirm it. Once availability is confirmed, Marcos sends the payment details on WhatsApp."
+      }
+    },
+    {
+      "id": "cancelamento",
+      "pt": {
+        "p": "Qual a política de cancelamento?",
+        "r": "Cancelando até 30 dias antes do check-in, o reembolso é integral. Entre 30 e 7 dias antes, o reembolso é de 50%. Com menos de 7 dias, a reserva não é reembolsável."
+      },
+      "es": {
+        "p": "¿Cuál es la política de cancelación?",
+        "r": "Si cancelás hasta 30 días antes del check-in, el reembolso es total. Entre 30 y 7 días antes, el reembolso es del 50%. Con menos de 7 días, la reserva no es reembolsable."
+      },
+      "en": {
+        "p": "What is the cancellation policy?",
+        "r": "Cancel at least 30 days before check-in for a full refund. Between 30 and 7 days before, you get a 50% refund. With less than 7 days, the booking is non-refundable."
+      }
+    },
+    {
+      "id": "criancas",
+      "pt": {
+        "p": "Criança paga?",
+        "r": "Crianças de até 2 anos não pagam. No Espaço Lagoa há berço e cadeirão sob pedido."
+      },
+      "es": {
+        "p": "¿Los niños pagan?",
+        "r": "Los niños de hasta 2 años no pagan. En el Espaço Lagoa hay cuna y silla alta a pedido."
+      },
+      "en": {
+        "p": "Do children pay?",
+        "r": "Children up to 2 years old stay free. The Espaço Lagoa has a crib and high chair on request."
+      }
+    },
+    {
+      "id": "pet",
+      "pt": {
+        "p": "Aceitam pet?",
+        "r": "Aceitamos sim! As duas casas têm área privativa fechada. Pedimos só que os dejetos sejam recolhidos antes do check-out e que o pet não entre na banheira."
+      },
+      "es": {
+        "p": "¿Aceptan mascotas?",
+        "r": "¡Sí! Las dos casas tienen un área privada cerrada. Solo pedimos que se junten los desechos antes del check-out y que la mascota no entre en la bañera."
+      },
+      "en": {
+        "p": "Do you accept pets?",
+        "r": "Yes! Both houses have a private fenced area. We just ask that you pick up after your pet before check-out and that pets stay out of the hot tub."
+      }
+    },
+    {
+      "id": "cafe",
+      "pt": {
+        "p": "Tem café da manhã?",
+        "r": "O café da manhã é sob pedido e cobrado à parte. As casas têm cozinha completa para quem preferir preparar. E na chegada sempre tem uma cortesia: bolo, chá, café, bombom, água e cerveja."
+      },
+      "es": {
+        "p": "¿Incluye desayuno?",
+        "r": "El desayuno es a pedido y se cobra aparte. Las casas tienen cocina completa para quien prefiera prepararlo. Y a la llegada siempre hay una cortesía: torta, té, café, bombones, agua y cerveza."
+      },
+      "en": {
+        "p": "Is breakfast included?",
+        "r": "Breakfast is available on request at an extra charge. The houses have a full kitchen if you prefer to cook. And there is always a welcome treat on arrival: cake, tea, coffee, chocolates, water and beer."
+      }
+    },
+    {
+      "id": "regras",
+      "pt": {
+        "p": "Quais são as regras da casa?",
+        "r": "As principais: não é permitido fazer frituras; o lixo deve ser levado à lixeira pública na entrada do bairro; a grelha da churrasqueira deve ser entregue limpa; música só em volume que não perturbe a área externa; fumar só na área externa. Na banheira: não entrar com autobronzeador ou maquiagem, não lavar com produtos ou esponjas e não colocar animais. Toalhas e lençóis manchados são cobrados."
+      },
+      "es": {
+        "p": "¿Cuáles son las reglas de la casa?",
+        "r": "Las principales: no se permite freír; la basura se lleva al contenedor público a la entrada del barrio; la parrilla se entrega limpia; música a un volumen que no moleste afuera; fumar solo en el área externa. En la bañera: no entrar con autobronceante o maquillaje, no lavarla con productos ni esponjas y no meter mascotas. Las toallas y sábanas manchadas se cobran."
+      },
+      "en": {
+        "p": "What are the house rules?",
+        "r": "The main ones: no frying; take the trash to the public bin at the neighborhood entrance; return the barbecue grill clean; keep music at a volume that does not disturb outside; smoking only outdoors. In the hot tub: no self-tanner or makeup, do not clean it with products or sponges, and no pets. Stained towels and sheets are charged."
+      }
+    },
+    {
+      "id": "visitas",
+      "pt": {
+        "p": "Posso receber visitas?",
+        "r": "Pode sim, desde que o total de pessoas na casa não passe de 4."
+      },
+      "es": {
+        "p": "¿Puedo recibir visitas?",
+        "r": "Sí, siempre que el total de personas en la casa no supere 4."
+      },
+      "en": {
+        "p": "Can I have visitors?",
+        "r": "Yes, as long as the total number of people in the house does not exceed 4."
+      }
+    },
+    {
+      "id": "fumar",
+      "pt": {
+        "p": "Pode fumar?",
+        "r": "Só na área externa."
+      },
+      "es": {
+        "p": "¿Se puede fumar?",
+        "r": "Solo en el área externa."
+      },
+      "en": {
+        "p": "Is smoking allowed?",
+        "r": "Only outdoors."
+      }
+    },
+    {
+      "id": "sustentabilidade",
+      "pt": {
+        "p": "A pousada tem alguma prática sustentável?",
+        "r": "Sim: as casas usam energia solar e fazem coleta seletiva."
+      },
+      "es": {
+        "p": "¿Tienen prácticas sustentables?",
+        "r": "Sí: las casas usan energía solar y separan los residuos para reciclaje."
+      },
+      "en": {
+        "p": "Do you have sustainable practices?",
+        "r": "Yes: the houses run on solar energy and we sort waste for recycling."
+      }
+    },
+    {
+      "id": "anfitriao",
+      "pt": {
+        "p": "Quem é o anfitrião?",
+        "r": "O anfitrião é o Marcos, que cuida das casas e, sempre que possível, recebe os hóspedes pessoalmente."
+      },
+      "es": {
+        "p": "¿Quién es el anfitrión?",
+        "r": "El anfitrión es Marcos, que cuida las casas y, siempre que puede, recibe a los huéspedes personalmente."
+      },
+      "en": {
+        "p": "Who is the host?",
+        "r": "The host is Marcos, who looks after the houses and, whenever possible, welcomes guests in person."
+      }
+    },
+    {
+      "id": "acesso-senhas",
+      "pt": {
+        "p": "Qual a senha do Wi-Fi e o código de acesso da casa?",
+        "r": "Eu não tenho a senha do Wi-Fi nem o código de acesso: as instruções de acesso (o check-in é autônomo) chegam só a quem já reservou, antes da chegada. Se você já reservou e não recebeu, me avisa que eu passo para o Marcos."
+      },
+      "es": {
+        "p": "¿Cuál es la contraseña del Wi-Fi y el código de acceso a la casa?",
+        "r": "No tengo la contraseña del Wi-Fi ni el código de acceso: las instrucciones de acceso (el check-in es autónomo) llegan solo a quien ya reservó, antes de la llegada. Si ya reservaste y no las recibiste, avisame y se lo paso a Marcos."
+      },
+      "en": {
+        "p": "What's the Wi-Fi password and the door access code?",
+        "r": "I don't have the Wi-Fi password or the access code: the access instructions (check-in is self-service) go only to guests who have already booked, before arrival. If you've already booked and haven't received them, let me know and I'll pass it to Marcos."
+      }
+    },
+    {
+      "id": "checkin-antecipado",
+      "pt": {
+        "p": "Posso fazer check-in antes das 15h ou check-out depois das 11h?",
+        "r": "O check-in é a partir das 15h e o check-out até as 11h. Entrada antes ou saída depois: me diz o horário que eu passo para o Marcos ver se dá."
+      },
+      "es": {
+        "p": "¿Puedo hacer check-in antes de las 15 h o check-out después de las 11 h?",
+        "r": "El check-in es a partir de las 15 h y el check-out hasta las 11 h. Entrar antes o salir después: decime el horario y se lo paso a Marcos para que vea si es posible."
+      },
+      "en": {
+        "p": "Can I check in before 3 pm or check out after 11 am?",
+        "r": "Check-in is from 3 pm and check-out is until 11 am. Arriving earlier or leaving later: tell me the time and I'll pass it to Marcos to see if it's possible."
+      }
+    },
+    {
+      "id": "site",
+      "pt": {
+        "p": "Qual o site de vocês?",
+        "r": "O site é refugioexemplo.com.br, com fotos das duas casas e da Praia do Exemplo. Para reservar, é por este WhatsApp mesmo."
+      },
+      "es": {
+        "p": "¿Cuál es su sitio web?",
+        "r": "El sitio es refugioexemplo.com.br, con fotos de las dos casas y de la Praia do Exemplo. Para reservar, es por este mismo WhatsApp."
+      },
+      "en": {
+        "p": "What's your website?",
+        "r": "Our website is refugioexemplo.com.br, with photos of both houses and of Praia do Exemplo. To book, just do it through this same WhatsApp."
+      }
+    },
+    {
+      "tipo": "temporadas",
+      "id": "temporadas",
+      "nota": "Períodos de tarifa do FAQ (sem preço): a ferramenta noites_da_estadia marca em que período cada noite cai. Data-limite (15/12, 15/03, 26/12, 05/01) é borda: o Marcos confirma a tarifa dessa noite.",
+      "periodos": [
+        {
+          "nome": "alta temporada",
+          "de": "15/12",
+          "ate": "15/03"
+        },
+        {
+          "nome": "Réveillon",
+          "de": "26/12",
+          "ate": "05/01"
+        }
+      ]
+    },
+    {
+      "tipo": "guia",
+      "categoria": "Mercados",
+      "nome": "Althoff Supermercados",
+      "km": 1.96,
+      "lat": -28.02868,
+      "lon": -48.61966,
+      "descricao": "Supermercado do centro de Cidade Exemplo, na região da Rua Porto Alegre; opção para rancho",
+      "endereco": "Rua das Flores, s/n, Centro, Cidade Exemplo/SC",
+      "horario": "dom 8h–21h; seg a sex 8h–21h (8h30 em alguns dias); sáb 8h30–21h (agregador Tiendeo, sem data)",
+      "fonte": "https://exemplo.com.br/ | coordenadas: OpenStreetMap (Overpass, consulta 08/10/2026)"
+    },
+    {
+      "tipo": "guia",
+      "categoria": "Restaurantes",
+      "nome": "Restaurante Sabor do Mar",
+      "km": 2.71,
+      "lat": -28.04609,
+      "lon": -48.62654,
+      "descricao": "Restaurante familiar com foco em frutos do mar e carnes, entre a Exemplo e a Ferrugem",
+      "horario": "horário flexível no verão (confirmar por telefone)",
+      "contato": "(48) 3000-0000",
+      "fonte": "https://exemplo.com.br/ | https://exemplo.com.br/ | coordenadas: OpenStreetMap (Overpass, consulta 08/10/2026)"
+    },
+    {
+      "tipo": "guia",
+      "categoria": "Restaurantes",
+      "nome": "Tasca dos Açores",
+      "km": 2.29,
+      "lat": -28.02356,
+      "lon": -48.61672,
+      "descricao": "Culinária açoriana com vista para o mar e coquetéis",
+      "contato": "(48) 90000-0020",
+      "fonte": "https://exemplo.com.br/ | coordenadas: OpenStreetMap (Overpass, consulta 08/10/2026)"
+    },
+    {
+      "tipo": "guia",
+      "categoria": "Saúde",
+      "nome": "Policlínica Municipal de Cidade Exemplo",
+      "km": 2.0,
+      "lat": -28.02695,
+      "lon": -48.61818,
+      "descricao": "Unidade municipal de saúde; no OSM consta atendimento 24h (confirmar por telefone)",
+      "endereco": "Rua Professor Antônio José Botelho, 167, Cidade Exemplo/SC",
+      "horario": "24h (informação do OSM; confirmar)",
+      "contato": "(48) 3000-0021",
+      "fonte": "https://exemplo.com.br/ | coordenadas: OpenStreetMap (Overpass, consulta 08/10/2026)"
+    },
+    {
+      "tipo": "guia",
+      "categoria": "Praias, trilhas e passeios",
+      "nome": "Praia do Exemplo",
+      "km": 0.37,
+      "lat": -28.03959,
+      "lon": -48.6065,
+      "descricao": "Praia de cerca de 1,5 km entre dois morros, famosa pelo surf; mar forte, não indicada para crianças nadarem",
+      "fonte": "https://exemplo.com.br/ | coordenadas: OpenStreetMap (Overpass, consulta 08/10/2026)"
+    },
+    {
+      "tipo": "guia",
+      "categoria": "Praias, trilhas e passeios",
+      "nome": "Praia de Cidade Exemplo (central)",
+      "km": 3.31,
+      "lat": -28.01778,
+      "lon": -48.62132,
+      "descricao": "Praia do centro, com a maior oferta de restaurantes, bares e lojas",
+      "fonte": "https://exemplo.com.br/ | coordenadas: OpenStreetMap (Overpass, consulta 08/10/2026)"
+    },
+    {
+      "tipo": "guia",
+      "categoria": "Praias, trilhas e passeios",
+      "nome": "Praia da Ferrugem",
+      "km": 6.48,
+      "lat": -28.07829,
+      "lon": -48.62844,
+      "descricao": "Praia de águas esverdeadas, com bares e restaurantes à beira-mar",
+      "fonte": "https://exemplo.com.br/ | https://exemplo.com.br/ | coordenadas: OpenStreetMap (Overpass, consulta 08/10/2026)"
+    },
+    {
+      "tipo": "guia",
+      "categoria": "Praias, trilhas e passeios",
+      "nome": "Praia da Gamboa",
+      "km": 12.34,
+      "lat": -27.9531429,
+      "lon": -48.6240634,
+      "descricao": "Praia tranquila, com avistamento de baleias-francas (jun–nov) em passeios de barco",
+      "fonte": "https://exemplo.com.br/ | coordenadas: OpenStreetMap (Overpass, consulta 08/10/2026)"
+    },
+    {
+      "tipo": "guia",
+      "categoria": "Praias, trilhas e passeios",
+      "nome": "Trilha da Pedra Branca",
+      "km": 7.92,
+      "lat": -28.0503505,
+      "lon": -48.6681057,
+      "descricao": "Trilha até um mirante com vista da Lagoa de Cidade Exemplo; acesso pela comunidade da Encantada",
+      "fonte": "https://exemplo.com.br/ | coordenadas: OpenStreetMap (Overpass, consulta 08/10/2026)"
+    },
+    {
+      "tipo": "guia",
+      "categoria": "Praias, trilhas e passeios",
+      "nome": "Lagoa de Cidade Exemplo",
+      "km": 6.14,
+      "lat": -28.066454,
+      "lon": -48.6428007,
+      "descricao": "Lagoa entre a Praia da Ferrugem e a Pedra Branca",
+      "fonte": "https://exemplo.com.br/ | coordenadas: OpenStreetMap (Overpass, consulta 08/10/2026)"
+    },
+    {
+      "tipo": "guia",
+      "categoria": "Como chegar",
+      "nome": "Rodoviária de Cidade Exemplo",
+      "km": 2.98,
+      "lat": -28.02738,
+      "lon": -48.62828,
+      "descricao": "Terminal rodoviário da cidade",
+      "endereco": "R. Santa Rita, 498-530, Cidade Exemplo/SC",
+      "fonte": "https://exemplo.com.br/ | coordenadas: OpenStreetMap (Overpass, consulta 08/10/2026)"
+    },
+    {
+      "tipo": "guia",
+      "categoria": "Como chegar",
+      "nome": "Aeroporto Internacional de Florianópolis (Hercílio Luz)",
+      "km": 53.66,
+      "lat": -27.6699908,
+      "lon": -48.5472965,
+      "descricao": "Aeroporto mais próximo, cerca de 80 km pela BR-101 (aprox. 1h30)",
+      "fonte": "https://exemplo.com.br/ | coordenadas: OpenStreetMap (Overpass, consulta 08/10/2026)"
+    }
+  ],
+  "lat": -28.0373,
+  "lon": -48.6078,
+  "mapa": {
+    "endereco": "Praia do Exemplo, Cidade Exemplo/SC",
+    "foto": "https://exemplo.com.br/",
+    "instagram": "@refugioexemplo",
+    "site": "https://exemplo.com.br/"
+  }
+}

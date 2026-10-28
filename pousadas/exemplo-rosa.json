@@ -1,0 +1,301 @@
+{
+  "ficticio": true,
+  "aviso": "DADOS FICTÍCIOS para a demonstração. Esta pousada não existe; preços e regras são inventados.",
+  "slug": "exemplo-rosa",
+  "nome": "Pousada Exemplo do Rosa",
+  "cidade": "Praia do Rosa, Imbituba/SC",
+  "dono": "Carla (dona)",
+  "idiomas": [
+    "pt",
+    "es",
+    "en"
+  ],
+  "faq": [
+    {
+      "id": "precos-baixa",
+      "pt": {
+        "p": "Quanto custa a diária na baixa temporada?",
+        "r": "De março a novembro (fora feriados), a suíte de casal custa R$ 280 por noite, com café da manhã incluso."
+      },
+      "es": {
+        "p": "¿Cuánto cuesta la noche en temporada baja?",
+        "r": "De marzo a noviembre (fuera de feriados), la suite doble cuesta R$ 280 por noche, con desayuno incluido."
+      }
+    },
+    {
+      "id": "precos-media",
+      "pt": {
+        "p": "E em dezembro e depois do Carnaval?",
+        "r": "Média temporada: de 1º a 20 de dezembro e do fim do Carnaval até 31 de março. Suíte de casal R$ 420 por noite, com café."
+      },
+      "es": {
+        "p": "¿Y en diciembre y después de Carnaval?",
+        "r": "Temporada media: del 1 al 20 de diciembre y desde el fin de Carnaval hasta el 31 de marzo. Suite doble R$ 420 por noche, con desayuno."
+      }
+    },
+    {
+      "id": "precos-alta",
+      "pt": {
+        "p": "Quanto é na alta temporada?",
+        "r": "Alta temporada: de 21 de dezembro até o fim do Carnaval (janeiro inteiro e fevereiro até o Carnaval), exceto o pacote de Réveillon. Suíte de casal R$ 590 por noite e chalé família R$ 790 por noite, com café."
+      },
+      "es": {
+        "p": "¿Cuánto es en temporada alta?",
+        "r": "Temporada alta: del 21 de diciembre hasta el fin de Carnaval (todo enero y febrero hasta Carnaval), salvo el paquete de Año Nuevo. Suite doble R$ 590 por noche y chalet familiar R$ 790 por noche, con desayuno."
+      }
+    },
+    {
+      "id": "reveillon",
+      "pt": {
+        "p": "Tem pacote de Réveillon? Qual o mínimo de diárias?",
+        "r": "Sim. No Réveillon o mínimo é de 5 diárias (entrada 28/12, saída 02/01). Suíte de casal: R$ 3.900 o pacote; chalé família: R$ 5.200. Inclui café e ceia de 31/12."
+      },
+      "es": {
+        "p": "¿Tienen paquete de Año Nuevo? ¿Cuál es el mínimo de noches?",
+        "r": "Sí. En Año Nuevo el mínimo es de 5 noches (entrada 28/12, salida 02/01). Suite doble: R$ 3.900 el paquete; chalet familiar: R$ 5.200. Incluye desayuno y la cena del 31/12."
+      }
+    },
+    {
+      "id": "carnaval",
+      "pt": {
+        "p": "E no Carnaval, tem mínimo de diárias?",
+        "r": "No Carnaval o mínimo é de 4 diárias (de sexta a terça), com o valor da alta temporada."
+      },
+      "es": {
+        "p": "¿Y en Carnaval hay mínimo de noches?",
+        "r": "En Carnaval el mínimo es de 4 noches (de viernes a martes), con la tarifa de temporada alta."
+      }
+    },
+    {
+      "id": "minimo-diarias",
+      "pt": {
+        "p": "Tem mínimo de diárias fora do Réveillon e Carnaval?",
+        "r": "Na alta temporada o mínimo é de 3 diárias. Na média e na baixa, 2 diárias (fim de semana) ou 1 diária (durante a semana)."
+      },
+      "es": {
+        "p": "¿Hay mínimo de noches fuera de Año Nuevo y Carnaval?",
+        "r": "En temporada alta el mínimo es de 3 noches. En media y baja, 2 noches (fin de semana) o 1 noche (entre semana)."
+      }
+    },
+    {
+      "id": "acomodacoes",
+      "pt": {
+        "p": "Quais acomodações vocês têm?",
+        "r": "São 6 suítes de casal (até 3 pessoas com cama extra) e 2 chalés família (até 4 pessoas, com cozinha compacta). Todas com ar-condicionado, Wi-Fi, frigobar e varanda."
+      },
+      "es": {
+        "p": "¿Qué habitaciones tienen?",
+        "r": "Tenemos 6 suites dobles (hasta 3 personas con cama extra) y 2 chalets familiares (hasta 4 personas, con cocina compacta). Todas con aire acondicionado, Wi-Fi, frigobar y balcón."
+      }
+    },
+    {
+      "id": "pessoa-extra",
+      "pt": {
+        "p": "Quanto custa pessoa extra e criança?",
+        "r": "Crianças até 5 anos não pagam. De 6 a 11 anos: R$ 80 por noite. Adulto extra (cama extra na suíte): R$ 120 por noite."
+      },
+      "es": {
+        "p": "¿Cuánto cuesta una persona extra y los niños?",
+        "r": "Los niños hasta 5 años no pagan. De 6 a 11 años: R$ 80 por noche. Adulto extra (cama extra en la suite): R$ 120 por noche."
+      }
+    },
+    {
+      "id": "cafe",
+      "pt": {
+        "p": "O café da manhã está incluso? Que horas?",
+        "r": "Sim, está incluso em todas as diárias. É servido das 8h às 10h30, com frutas, pães caseiros, tapioca e opções sem glúten se avisar antes."
+      },
+      "es": {
+        "p": "¿El desayuno está incluido? ¿A qué hora?",
+        "r": "Sí, está incluido en todas las tarifas. Se sirve de 8:00 a 10:30, con frutas, panes caseros, tapioca y opciones sin gluten si nos avisás antes."
+      }
+    },
+    {
+      "id": "pet",
+      "pt": {
+        "p": "Aceitam pet?",
+        "r": "Aceitamos pets de pequeno porte (até 10 kg) só nos chalés família, com taxa de R$ 50 por diária. É preciso avisar na hora de pedir a reserva."
+      },
+      "es": {
+        "p": "¿Aceptan mascotas?",
+        "r": "Aceptamos mascotas pequeñas (hasta 10 kg) solo en los chalets familiares, con una tarifa de R$ 50 por noche. Hay que avisar al pedir la reserva."
+      }
+    },
+    {
+      "id": "estacionamento",
+      "pt": {
+        "p": "Tem estacionamento?",
+        "r": "Sim, estacionamento gratuito dentro da pousada, com 8 vagas (uma por acomodação)."
+      },
+      "es": {
+        "p": "¿Tienen estacionamiento?",
+        "r": "Sí, estacionamiento gratuito dentro de la posada, con 8 lugares (uno por habitación)."
+      }
+    },
+    {
+      "id": "checkin",
+      "pt": {
+        "p": "Qual o horário de check-in e check-out?",
+        "r": "Check-in a partir das 14h e check-out até as 11h. Entrada antecipada ou saída tardia dependem da disponibilidade do dia."
+      },
+      "es": {
+        "p": "¿Cuál es el horario de check-in y check-out?",
+        "r": "Check-in desde las 14:00 y check-out hasta las 11:00. Entrada anticipada o salida tardía dependen de la disponibilidad del día."
+      }
+    },
+    {
+      "id": "chegada-tarde",
+      "pt": {
+        "p": "Posso chegar de madrugada?",
+        "r": "A recepção funciona das 8h às 22h. Para chegada depois das 22h, combinamos antes a retirada da chave."
+      },
+      "es": {
+        "p": "¿Puedo llegar de madrugada?",
+        "r": "La recepción funciona de 8:00 a 22:00. Para llegar después de las 22:00, coordinamos antes la entrega de la llave."
+      }
+    },
+    {
+      "id": "como-chegar-floripa",
+      "pt": {
+        "p": "Como chego saindo de Florianópolis?",
+        "r": "São cerca de 90 km (1h30 de carro) pela BR-101 sentido sul, saída para Imbituba/Praia do Rosa. Do aeroporto de Florianópolis há ônibus até Imbituba e táxi/app até a pousada."
+      },
+      "es": {
+        "p": "¿Cómo llego desde Florianópolis?",
+        "r": "Son unos 90 km (1h30 en auto) por la BR-101 hacia el sur, salida a Imbituba/Praia do Rosa. Desde el aeropuerto de Florianópolis hay ómnibus hasta Imbituba y taxi/app hasta la posada."
+      }
+    },
+    {
+      "id": "como-chegar-poa",
+      "pt": {
+        "p": "E saindo de Porto Alegre?",
+        "r": "São cerca de 420 km (5h30 de carro) pela BR-101 sentido norte, até a saída para Imbituba/Praia do Rosa."
+      },
+      "es": {
+        "p": "¿Y desde Porto Alegre?",
+        "r": "Son unos 420 km (5h30 en auto) por la BR-101 hacia el norte, hasta la salida a Imbituba/Praia do Rosa."
+      }
+    },
+    {
+      "id": "praia",
+      "pt": {
+        "p": "Qual a distância até a praia?",
+        "r": "Ficamos a 600 m da Praia do Rosa, uns 8 minutos a pé por uma trilha com descida (na volta é subida)."
+      },
+      "es": {
+        "p": "¿A qué distancia está la playa?",
+        "r": "Estamos a 600 m de Praia do Rosa, unos 8 minutos caminando por un sendero en bajada (a la vuelta es subida)."
+      }
+    },
+    {
+      "id": "como-reservar",
+      "pt": {
+        "p": "Como faço para reservar?",
+        "r": "Me diga as datas, quantas pessoas (e idade das crianças) e seu nome. Eu passo para a Carla, que confirma a disponibilidade e envia os dados do sinal."
+      },
+      "es": {
+        "p": "¿Cómo hago para reservar?",
+        "r": "Decime las fechas, cuántas personas (y edad de los niños) y tu nombre. Se lo paso a Carla, que confirma la disponibilidad y te envía los datos de la seña."
+      }
+    },
+    {
+      "id": "sinal-pix",
+      "pt": {
+        "p": "Como funciona o pagamento?",
+        "r": "Depois que a Carla confirma a disponibilidade, a reserva é garantida com sinal de 30% via Pix; ela envia os dados. O restante é pago no check-in (Pix, cartão ou dinheiro)."
+      },
+      "es": {
+        "p": "¿Cómo es el pago?",
+        "r": "Después de que Carla confirma la disponibilidad, la reserva se garantiza con una seña del 30% por Pix; ella te envía los datos. El resto se paga en el check-in (Pix, tarjeta o efectivo)."
+      }
+    },
+    {
+      "id": "pagamento-estrangeiro",
+      "pt": {
+        "p": "Sou estrangeiro e não tenho Pix. Como pago o sinal?",
+        "r": "Sem Pix, o sinal pode ser pago por link de cartão de crédito. A Carla combina isso ao confirmar a reserva."
+      },
+      "es": {
+        "p": "Soy extranjero y no tengo Pix. ¿Cómo pago la seña?",
+        "r": "Sin Pix, la seña se puede pagar con un link de tarjeta de crédito. Carla lo coordina al confirmar la reserva."
+      }
+    },
+    {
+      "id": "cancelamento",
+      "pt": {
+        "p": "Qual a política de cancelamento?",
+        "r": "Cancelando até 30 dias antes, o sinal é devolvido. Entre 30 e 15 dias, devolvemos 50% do sinal. Com menos de 15 dias não há devolução, mas dá para remarcar uma vez para a baixa temporada."
+      },
+      "es": {
+        "p": "¿Cuál es la política de cancelación?",
+        "r": "Si cancelás hasta 30 días antes, se devuelve la seña. Entre 30 y 15 días, devolvemos el 50% de la seña. Con menos de 15 días no hay devolución, pero se puede cambiar la fecha una vez a temporada baja."
+      }
+    },
+    {
+      "id": "piscina",
+      "pt": {
+        "p": "Tem piscina?",
+        "r": "Sim, piscina ao ar livre aberta das 8h às 20h, e emprestamos toalhas de praia e guarda-sol."
+      },
+      "es": {
+        "p": "¿Tienen pileta?",
+        "r": "Sí, pileta al aire libre abierta de 8:00 a 20:00, y prestamos toallas de playa y sombrilla."
+      }
+    },
+    {
+      "id": "wifi",
+      "pt": {
+        "p": "O Wi-Fi é bom? Dá para trabalhar?",
+        "r": "Temos Wi-Fi de fibra em toda a pousada (cerca de 200 Mbps). Hóspedes trabalham daqui sem problema."
+      },
+      "es": {
+        "p": "¿El Wi-Fi es bueno? ¿Se puede trabajar?",
+        "r": "Tenemos Wi-Fi de fibra en toda la posada (unos 200 Mbps). Los huéspedes trabajan desde acá sin problema."
+      }
+    },
+    {
+      "id": "idioma",
+      "pt": {
+        "p": "Alguém fala espanhol na pousada?",
+        "r": "Sim, a equipe fala espanhol e o atendimento por aqui também é em espanhol e inglês."
+      },
+      "es": {
+        "p": "¿Alguien habla español en la posada?",
+        "r": "¡Sí! El equipo habla español y la atención por acá también es en español e inglés."
+      }
+    },
+    {
+      "id": "baleias",
+      "pt": {
+        "p": "Quando dá para ver baleias?",
+        "r": "A temporada da baleia-franca vai de julho a novembro; muitas vezes dá para ver das trilhas e costões perto da pousada."
+      },
+      "es": {
+        "p": "¿Cuándo se pueden ver ballenas?",
+        "r": "La temporada de la ballena franca va de julio a noviembre; muchas veces se ven desde los senderos y miradores cerca de la posada."
+      }
+    },
+    {
+      "id": "acessibilidade",
+      "pt": {
+        "p": "Tem quarto acessível?",
+        "r": "Temos 1 suíte térrea com banheiro adaptado. O acesso à praia é por trilha com degraus, então não é acessível para cadeira de rodas."
+      },
+      "es": {
+        "p": "¿Tienen habitación accesible?",
+        "r": "Tenemos 1 suite en planta baja con baño adaptado. El acceso a la playa es por un sendero con escalones, así que no es accesible para silla de ruedas."
+      }
+    },
+    {
+      "id": "regras",
+      "pt": {
+        "p": "Quais são as regras da casa?",
+        "r": "Silêncio a partir das 22h, proibido fumar nos quartos e visitas só com aviso na recepção."
+      },
+      "es": {
+        "p": "¿Cuáles son las reglas de la casa?",
+        "r": "Silencio desde las 22:00, prohibido fumar en las habitaciones y visitas solo avisando en recepción."
+      }
+    }
+  ]
+}

@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Guia da região · Pousada Exemplo</title>
+<style>
+  :root { --fundo:#f6f3ee; --cartao:#fff; --texto:#1f2421; --suave:#5d655f; --linha:#e4ded4; --destaque:#2f6f5e; }
+  @media (prefers-color-scheme: dark) { :root { --fundo:#141816; --cartao:#1d2320; --texto:#ecefe9; --suave:#a3aca5; --linha:#2c3430; --destaque:#7cc5ac; } }
+  * { box-sizing: border-box; }
+  /* página travada: só rola para baixo, sem pinça e sem arrasto para os lados; o mapa tem o próprio zoom */
+  html, body { touch-action: pan-y; overflow-x: hidden; width: 100%; max-width: 100%; position: relative;
+               -webkit-text-size-adjust: 100%; overscroll-behavior-x: none; }
+  #mapa { touch-action: none; }
+  body { margin:0; font:16px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background:var(--fundo); color:var(--texto); }
+  header { padding:18px 16px 10px; }
+  header small { color:var(--suave); letter-spacing:.06em; text-transform:uppercase; font-size:12px; }
+  h1 { margin:2px 0 0; font-size:22px; }
+  #mapa { height:46vh; min-height:260px; border-top:1px solid var(--linha); border-bottom:1px solid var(--linha); }
+  .chips { display:flex; gap:8px; overflow-x:auto; padding:12px 16px; scrollbar-width:none; }
+  .chip { flex:none; border:1px solid var(--linha); background:var(--cartao); color:var(--texto); border-radius:999px;
+          padding:7px 12px; font:inherit; font-size:14px; cursor:pointer; }
+  .chip.ativo { background:var(--destaque); border-color:var(--destaque); color:#fff; }
+  main { padding:0 16px 32px; max-width:720px; margin:0 auto; }
+  .lugar { background:var(--cartao); border:1px solid var(--linha); border-radius:14px; padding:14px; margin:10px 0; }
+  .lugar h3 { margin:0; font-size:16px; display:flex; gap:8px; align-items:baseline; justify-content:space-between; }
+  .dist { color:var(--destaque); font-size:13px; font-weight:600; white-space:nowrap; }
+  .lugar p { margin:6px 0 0; color:var(--suave); font-size:14px; }
+  .acoes { margin-top:10px; display:flex; gap:14px; font-size:14px; }
+  .acoes a { color:var(--destaque); font-weight:600; text-decoration:none; }
+  .tag { display:inline-block; font-size:12px; padding:2px 8px; border-radius:999px; background:var(--linha); margin-top:8px; }
+  footer { color:var(--suave); font-size:12px; padding:0 16px 24px; max-width:720px; margin:0 auto; }
+  .pino { width:30px; height:30px; border-radius:50%; display:grid; place-items:center; color:#fff; font-size:15px;
+          border:2px solid #fff; box-shadow:0 1px 4px rgba(0,0,0,.35); }
+
+  #mapa { height:52vh; }
+  /* computador: lista à esquerda com rolagem própria, mapa ocupando a tela à direita */
+  @media (min-width: 900px) {
+    body { height:100vh; overflow:hidden; display:grid; grid-template-columns:minmax(360px, 420px) 1fr;
+           grid-template-rows:auto auto auto 1fr auto; grid-template-areas:"cab mapa" "busca mapa" "chips mapa" "lista mapa" "rodape mapa"; }
+    header { grid-area:cab; }
+    #mapa { grid-area:mapa; height:100vh; min-height:0; border:0; border-left:1px solid var(--linha); }
+    .busca { grid-area:busca; }
+    .chips { grid-area:chips; flex-wrap:wrap; overflow:visible; }
+    main { grid-area:lista; overflow-y:auto; max-width:none; margin:0; padding:0 16px 16px; min-height:0; }
+    footer { grid-area:rodape; max-width:none; margin:0; padding:10px 16px 14px; border-top:1px solid var(--linha); }
+    .chip:hover { border-color:var(--destaque); }
+  }
+  .busca { display:flex; gap:8px; padding:12px 16px 0; }
+  .busca input { flex:1; min-width:0; border:1px solid var(--linha); background:var(--cartao); color:var(--texto);
+                 border-radius:999px; padding:9px 14px; font:inherit; font-size:16px; }  /* < 16px o iPhone amplia a página ao tocar */
+  .busca button { border:0; background:var(--destaque); color:#fff; border-radius:999px; padding:9px 16px; font:inherit; font-size:15px; }
+  .vazio { color:var(--suave); padding:18px 0; }
+  .chip.filtro.ativo { background:#2f7d4f; border-color:#2f7d4f; }
+  article.lugar { cursor:pointer; }
+  article.lugar:hover { border-color:var(--destaque); }
+  .grupo { margin:18px 0 6px; }
+  .grupo h2 { font-size:17px; margin:0 0 4px; padding-bottom:6px; border-bottom:1px solid var(--linha); }
+  .linha { display:flex; justify-content:space-between; gap:14px; padding:9px 2px; border-bottom:1px solid var(--linha);
+           color:var(--texto); text-decoration:none; font-size:15px; }
+  .linha .d { color:var(--suave); white-space:nowrap; font-variant-numeric:tabular-nums; }
+  .linha:hover span:first-child, .linha:focus-visible span:first-child { color:var(--destaque); }
+</style>
+</head>
+<body>
+<header><small>Guia da região</small><h1>Pousada Exemplo</h1></header>
+<div id="mapa" role="img" aria-label="Mapa da região com a pousada e os lugares"></div>
+<form class="busca" role="search"><input id="termo" type="search" placeholder="Procurar: sorveteria, lavanderia, surf…"
+  aria-label="Procurar lugar perto da pousada" enterkeyhint="search"><button type="submit">Buscar</button></form>
+<nav class="chips" aria-label="Categorias"><button class="chip filtro" id="abertos" type="button" aria-pressed="false">🕒 Abertos agora</button><button class="chip ativo" data-cat="">Guia da pousada</button><button class="chip" data-cat="Mercados">🛒 Mercados</button><button class="chip" data-cat="Padarias">🥐 Padarias</button><button class="chip" data-cat="Farmácias">💊 Farmácias</button><button class="chip" data-cat="Roupas e moda praia">👕 Roupas e moda praia</button><button class="chip" data-cat="Restaurantes">🍽️ Restaurantes</button><button class="chip" data-cat="Sorveterias">🍦 Sorveterias</button><button class="chip" data-cat="Postos de gasolina">⛽ Postos de gasolina</button><button class="chip" data-cat="Saúde">🏥 Saúde</button><button class="chip" data-cat="Praias, trilhas e passeios">🌊 Praias, trilhas e passeios</button><button class="chip" data-cat="Bancos e caixas eletrônicos">🏧 Bancos e caixas eletrônicos</button></nav>
+<main id="lista"></main>
+<footer>Distâncias aproximadas a partir da pousada. Horários mudam fora da temporada: confirme antes de ir.
+Lugares das categorias e da busca: Google Maps.</footer>
+<script>
+const D = {"pousada": {"nome": "Pousada Exemplo", "lat": -28.1278, "lon": -48.6468}, "lugares": [{"nome": "Zolet", "categoria": "Restaurantes", "lat": -28.1271, "lon": -48.6483, "dist": "220 m · 3 min a pé", "descricao": "Pizzaria napolitana com deck no Centrinho", "endereco": "Centrinho, Praia do Rosa, Imbituba/SC", "horario": "qua a dom 19h–23h30", "contato": "(48) 90000-0015 | @zoletpizzas", "temporada": false}, {"nome": "Goen Sushi Lounge", "categoria": "Restaurantes", "lat": -28.126679, "lon": -48.648587, "dist": "280 m · 4 min a pé", "descricao": "Restaurante japonês (sushi) com drinks, no Centrinho", "endereco": "Av. Porto Novo, s/n, Centrinho, Praia do Rosa, Imbituba/SC", "horario": "todos os dias 18h–23h", "contato": "(48) 3000-0013 | @goen.sushi", "temporada": false}, {"nome": "Strelitza PDR", "categoria": "Roupas e moda praia", "lat": -28.1266515, "lon": -48.6487082, "dist": "290 m · 4 min a pé", "descricao": "Loja multimarcas de moda feminina (Farm, Colcci, Morena Rosa e outras)", "endereco": "Centrinho, Praia do Rosa, Imbituba/SC", "horario": "todos os dias 10h–22h", "contato": "@strelitzapdr", "temporada": false}, {"nome": "RAGU Cucina Italiana", "categoria": "Restaurantes", "lat": -28.12654, "lon": -48.64862, "dist": "290 m · 4 min a pé", "descricao": "Restaurante italiano com massas frescas e risotos", "endereco": "Villa de Carli, Centrinho, Praia do Rosa, Imbituba/SC", "horario": "qui a sáb 19h–23h30", "contato": "reservas pelo Instagram @ragu.cucina", "temporada": false}, {"nome": "Made in Guarda – Praia do Rosa", "categoria": "Roupas e moda praia", "lat": -28.1264068, "lon": -48.6487076, "dist": "320 m · 4 min a pé", "descricao": "Marca local de roupa casual, moda praia e acessórios", "endereco": "Av. Central da Praia do Rosa, s/n, Ibiraquera, Imbituba/SC", "horario": "todos os dias 10h–22h (quefazernorosa)", "contato": "(48) 3000-0007 | WhatsApp (48) 90000-0008", "temporada": false}, {"nome": "Mercado Meia Praia", "categoria": "Mercados", "lat": -28.125612, "lon": -48.647394, "dist": "330 m · 4 min a pé", "descricao": "Mercado na entrada do Centrinho, com boa variedade de produtos", "endereco": "Estrada para a Praia do Rosa, 713, Ibiraquera, Imbituba/SC", "horario": "", "contato": "(48) 90000-0003 | @supermercadomeiapraia", "temporada": false}, {"nome": "Lola Resto Bar", "categoria": "Restaurantes", "lat": -28.126124, "lon": -48.648936, "dist": "360 m · 4 min a pé", "descricao": "Resto-bar com tapas, risotos, pizzas e música", "endereco": "Av. Porto Novo, Centrinho, Praia do Rosa, Imbituba/SC", "horario": "todos os dias 19h–23h30; sex a dom também a partir das 12h", "contato": "(48) 90000-0014 | @lolarestobar", "temporada": false}, {"nome": "Reverb", "categoria": "Roupas e moda praia", "lat": -28.1257741, "lon": -48.6492334, "dist": "430 m · 5 min a pé", "descricao": "Marca local com confecção própria e peças autorais", "endereco": "Centrinho, Praia do Rosa, Imbituba/SC", "horario": "", "contato": "@vistareverb", "temporada": false}, {"nome": "Tigre Asiático", "categoria": "Restaurantes", "lat": -28.12516, "lon": -48.64946, "dist": "510 m · 6 min a pé", "descricao": "Restaurante de cozinha asiática e frutos do mar, com sushi", "endereco": "Estrada Geral da Praia do Rosa, Centrinho, Praia do Rosa, Imbituba/SC", "horario": "todos os dias 19h–23h30", "contato": "(48) 3000-0012 | @tigre_asiatico", "temporada": false}, {"nome": "Silas Restaurante e Sorveteria", "categoria": "Restaurantes", "lat": -28.1251909, "lon": -48.6500661, "dist": "560 m · 7 min a pé", "descricao": "Restaurante de buffet no almoço, com café e sorvete à tarde", "endereco": "Centrinho, Praia do Rosa, Imbituba/SC", "horario": "todos os dias 8h–20h", "contato": "@silasrestaurantecafe", "temporada": false}, {"nome": "Mercado e Padaria Fernandes", "categoria": "Padarias", "lat": -28.1288868, "lon": -48.652997, "dist": "810 m · 10 min a pé", "descricao": "Mercado pequeno com padaria de pão fresco diário", "endereco": "Praia do Rosa, Imbituba/SC (endereço exato não publicado)", "horario": "", "contato": "(48) 90000-0006 | @mercadoepadariafernandes", "temporada": false}, {"nome": "Praia do Rosa", "categoria": "Praias, trilhas e passeios", "lat": -28.129306, "lon": -48.640191, "dist": "870 m · 11 min a pé", "descricao": "Praia principal: Rosa Sul tem ondas mais calmas e Rosa Norte é procurada por surfistas experientes", "endereco": "Acesso pelo Centrinho / Av. Porto Novo, Praia do Rosa, Imbituba/SC", "horario": "", "contato": "", "temporada": false}, {"nome": "Ana Paula Supermercados", "categoria": "Mercados", "lat": -28.119352, "lon": -48.650989, "dist": "1,3 km · 17 min a pé", "descricao": "Supermercado com hortifrúti e itens básicos para a estadia", "endereco": "Av. Porto Novo, s/n, Ibiraquera (região do Rosa), Imbituba/SC", "horario": "todos os dias 7h–21h30", "contato": "(48) 90000-0002 | @anapaulasupermercados", "temporada": false}, {"nome": "Trilha Rosa Norte → Praia Vermelha", "categoria": "Praias, trilhas e passeios", "lat": -28.12161, "lon": -48.63701, "dist": "1,5 km · 19 min a pé", "descricao": "Trilha de 1,23 km (40–50 min), nível médio, até a Praia Vermelha, que só tem acesso por trilha", "endereco": "Início no canto norte da Praia do Rosa", "horario": "", "contato": "", "temporada": false}, {"nome": "Trilha do Caminho do Rei → Praia do Luz", "categoria": "Praias, trilhas e passeios", "lat": -28.139829, "lon": -48.647756, "dist": "1,7 km · 22 min a pé", "descricao": "Trilha sombreada de cerca de 30 min, nível médio, com vista da baía e da Ilha do Batuta; também é ponto para ver baleias", "endereco": "Início na rua Caminho do Rei (Rosa Sul), termina na Praia do Luz", "horario": "", "contato": "", "temporada": false}, {"nome": "Mercado Supra", "categoria": "Mercados", "lat": -28.135672, "lon": -48.669277, "dist": "3,1 km · ~6 min de carro", "descricao": "Mercado de bairro com açougue, venda de lenha e cervejas", "endereco": "Estrada Velha, Ibiraquera, Imbituba/SC", "horario": "seg a sáb 7h30–21h; dom 7h30–20h (agregador wanderboat, sem data)", "contato": "(48) 90000-0001", "temporada": false}, {"nome": "Lagoa de Ibiraquera", "categoria": "Praias, trilhas e passeios", "lat": -28.147152, "lon": -48.668763, "dist": "4,0 km · ~8 min de carro", "descricao": "Lagoa de água rasa e sem barcos a motor, conhecida por kitesurf, windsurf e stand up paddle", "endereco": "Ibiraquera, Imbituba/SC", "horario": "", "contato": "", "temporada": false}, {"nome": "Supermercado Exemplo – Campo D'Una", "categoria": "Mercados", "lat": -28.101737, "lon": -48.676076, "dist": "5,3 km · ~11 min de carro", "descricao": "Supermercado grande com açougue; opção para rancho", "endereco": "Rodovia SC-434, km 10, nº 10864, Campo D'Una (divisa Imbituba/Garopaba)", "horario": "seg a dom 8h–21h", "contato": "(48) 3000-0004", "temporada": false}, {"nome": "Barra de Ibiraquera", "categoria": "Praias, trilhas e passeios", "lat": -28.172424, "lon": -48.65787, "dist": "6,6 km · ~13 min de carro", "descricao": "Praia onde a lagoa encontra o mar; concentra aluguel de equipamentos e tem ondas para surfistas intermediários", "endereco": "Barra de Ibiraquera, Imbituba/SC", "horario": "", "contato": "", "temporada": false}, {"nome": "Posto Simon", "categoria": "Postos de gasolina", "lat": -28.165975, "lon": -48.692701, "dist": "8,0 km · ~16 min de carro", "descricao": "Posto de combustível na BR-101", "endereco": "Rodovia BR-101, km 277, nº 2203, Alto Arroio, Imbituba/SC", "horario": "", "contato": "(48) 3000-0016", "temporada": false}, {"nome": "Rodoviária de Cidade Exemplo", "categoria": "Como chegar", "lat": -28.0268567, "lon": -48.630204, "dist": "16 km · cerca de 25 min de carro", "descricao": "Ônibus de Florianópolis (Terminal Rita Maria) pela Paulotur e Paulo Lopes, cerca de 1h10 de viagem; de Cidade Exemplo ao Rosa, cerca de 20 min", "endereco": "Rua Teonáz Israel, 111, Ferraz, Cidade Exemplo/SC", "horario": "", "contato": "(48) 3000-0019", "temporada": false}, {"nome": "Hospital São Camilo Imbituba", "categoria": "Saúde", "lat": -28.245803, "lon": -48.677732, "dist": "17,5 km · ~35 min de carro", "descricao": "Hospital com pronto-socorro 24h", "endereco": "Av. Brasil, 938, Paes Leme, Imbituba/SC", "horario": "pronto atendimento 24h (urgência e emergência)", "contato": "(48) 3000-0018", "temporada": false}, {"nome": "Rodoviária de Imbituba", "categoria": "Como chegar", "lat": -28.2374243, "lon": -48.6727329, "dist": "21 km · cerca de 30 min de carro", "descricao": "Rodoviária do centro de Imbituba, ao sul do Rosa", "endereco": "Rua Ayrton Senna, Centro, Imbituba/SC", "horario": "", "contato": "", "temporada": false}, {"nome": "Aeroporto Regional Sul (Jaguaruna, JJG)", "categoria": "Como chegar", "lat": -28.6672612, "lon": -49.054378, "dist": "96 km · cerca de 1h20 de carro", "descricao": "Aeroporto regional ao sul, com poucos voos (LATAM para Guarulhos; Azul Conecta anunciou Joinville). Conferir voos antes", "endereco": "JAU-054, Retiro, Jaguaruna/SC", "horario": "", "contato": "", "temporada": false}, {"nome": "Aeroporto Internacional de Florianópolis (FLN)", "categoria": "Como chegar", "lat": -27.6700642, "lon": -48.5449877, "dist": "96 km · cerca de 1h30 de carro", "descricao": "Aeroporto principal da região, com voos nacionais e internacionais", "endereco": "Rod. Aparício Ramos Cordeiro, Carianos, Florianópolis/SC", "horario": "", "contato": "", "temporada": false}, {"nome": "Komprão Koch Atacadista – Campo D'Una (loja 57)", "categoria": "Mercados", "lat": null, "lon": null, "dist": "", "descricao": "Atacarejo (atacado e varejo) para compras grandes de rancho", "endereco": "Rodovia SC, s/n, bairro Campo D'Una, Imbituba/SC", "horario": "seg a sáb 7h–22h; dom e feriados 8h–21h", "contato": "(48) 3000-0005", "temporada": false}, {"nome": "Café da Esquina", "categoria": "Padarias", "lat": null, "lon": null, "dist": "", "descricao": "Padaria e café no Centrinho, com pão artesanal, croissants e café", "endereco": "Av. Porto Novo, 962 (anexo à Pousada Casa do Céu), Centrinho, Praia do Rosa, Imbituba/SC", "horario": "todos os dias 9h–19h", "contato": "@cafedaesquina.padaria", "temporada": false}, {"nome": "Morrinhos Bakery", "categoria": "Padarias", "lat": null, "lon": null, "dist": "", "descricao": "Confeitaria artesanal e pães de fermentação natural (levain)", "endereco": "Av. Central, Centrinho, Praia do Rosa, Imbituba/SC", "horario": "qua a seg 8h–11h30 e 15h–19h (fecha terça)", "contato": "@morrinhos.bakery", "temporada": false}, {"nome": "Farmácia Nossa Senhora dos Navegantes", "categoria": "Farmácias", "lat": null, "lon": null, "dist": "", "descricao": "Farmácia pequena e completa em Ibiraquera", "endereco": "Rua Paraíso do Luz, s/n, Ibiraquera, Imbituba/SC", "horario": "", "contato": "", "temporada": false}, {"nome": "Kauai Praia do Rosa", "categoria": "Roupas e moda praia", "lat": null, "lon": null, "dist": "", "descricao": "Loja de roupas, calçados, semijoias e acessórios, com coleção própria", "endereco": "Praia do Rosa, Imbituba/SC (endereço exato não publicado)", "horario": "", "contato": "@kauai.praiadorosa | (48) 90000-0009 (Facebook)", "temporada": false}, {"nome": "Made in Guarda – Cidade Exemplo (rua comercial do Centro)", "categoria": "Roupas e moda praia", "lat": null, "lon": null, "dist": "", "descricao": "Loja na principal rua comercial de Cidade Exemplo, que concentra a maioria das lojas de roupa e moda praia da cidade", "endereco": "Rua Pref. João Orestes de Araújo, 727, loja 5, Centro, Cidade Exemplo/SC", "horario": "", "contato": "(48) 3000-0010 | WhatsApp (48) 90000-0011", "temporada": false}, {"nome": "Unidade de Saúde da Família de Ibiraquera / USF Praia do Rosa", "categoria": "Saúde", "lat": null, "lon": null, "dist": "", "descricao": "Posto de saúde municipal (SUS) para atendimento básico; não é pronto-socorro", "endereco": "Rua Roberto Teixeira de Souza, s/n, Ibiraquera, Imbituba/SC", "horario": "seg a sex 8h–17h (CNES)", "contato": "(48) 3000-0017", "temporada": false}, {"nome": "Observação da baleia-franca", "categoria": "Praias, trilhas e passeios", "lat": null, "lon": null, "dist": "", "descricao": "Observação gratuita a partir da terra; a aproximação de barcos às baleias é restrita por lei federal (as fontes divergem sobre passeios de barco)", "endereco": "A partir da costa: Rosa Norte, Trilha do Caminho do Rei e mirantes dos morros", "horario": "temporada de julho a novembro, pico em agosto e setembro", "contato": "", "temporada": true}], "cores": {"Mercados": "#2f7d4f", "Padarias": "#b7791f", "Farmácias": "#c53030", "Roupas e moda praia": "#805ad5", "Restaurantes": "#dd6b20", "Sorveterias": "#d53f8c", "Postos de gasolina": "#4a5568", "Saúde": "#e53e3e", "Praias, trilhas e passeios": "#2b6cb0", "Bancos e caixas eletrônicos": "#2c7a7b", "Como chegar": "#1f2421"}, "icones": {"Como chegar": "✈️", "Mercados": "🛒", "Padarias": "🥐", "Farmácias": "💊", "Roupas e moda praia": "👕", "Restaurantes": "🍽️", "Sorveterias": "🍦", "Postos de gasolina": "⛽", "Saúde": "🏥", "Praias, trilhas e passeios": "🌊", "Bancos e caixas eletrônicos": "🏧"}, "tipos": {"Mercados": ["supermarket", "grocery_store", "convenience_store", "market"], "Padarias": ["bakery"], "Farmácias": ["pharmacy", "drugstore"], "Roupas e moda praia": ["clothing_store", "shoe_store"], "Restaurantes": ["restaurant"], "Sorveterias": ["ice_cream_shop"], "Postos de gasolina": ["gas_station"], "Saúde": ["hospital", "doctor", "medical_lab"], "Praias, trilhas e passeios": ["beach", "tourist_attraction", "hiking_area", "park"], "Bancos e caixas eletrônicos": ["atm", "bank"]}};
+const esc = s => String(s || "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const rad = x => x * Math.PI / 180;
+function km(lat, lon) {
+  const a = Math.sin(rad(lat - D.pousada.lat) / 2) ** 2 + Math.cos(rad(D.pousada.lat)) * Math.cos(rad(lat)) * Math.sin(rad(lon - D.pousada.lon) / 2) ** 2;
+  return 2 * 6371 * Math.asin(Math.sqrt(a)) * 1.3;
+}
+function dist(k) {
+  if (k == null) return "";
+  const ape = Math.max(1, Math.round(k * 1000 / 80)), t = k.toFixed(1).replace(".", ",");
+  if (k < 1) return `${Math.round(k * 100) * 10} m · ${ape} min a pé`;
+  return k <= 2 ? `${t} km · ${ape} min a pé` : `${t} km · ~${Math.max(1, Math.round(k * 2))} min de carro`;
+}
+const centro = {lat: D.pousada.lat, lng: D.pousada.lon};
+let mapa, marcadores = [], balao;
+function rotaDe(l) {
+  return l.lat != null ? `https://exemplo.com.br/
+    : (l.url || `https://exemplo.com.br/ + " " + (l.endereco || ""))}`);
+}
+function conteudoBalao(l) {  // miniatura da foto à esquerda, informações ao lado
+  const info = `<b>${esc(l.nome)}</b>${l.dist ? `<br>${esc(l.dist)}` : ""}${l.nota ? `<br>⭐ ${esc(l.nota)}` : ""}
+    ${l.aberto != null ? `<br><span style="color:${l.aberto ? "#2f7d4f" : "#c53030"};font-weight:600">${l.aberto ? "Aberto agora" : "Fechado agora"}</span>` : ""}
+    ${l.hoje ? `<br><span style="font-size:12px;color:#5d655f">${esc(l.hoje)}</span>` : ""}
+    <br><a href="${rotaDe(l)}" target="_blank" rel="noopener" style="color:#2f6f5e;font-weight:600">Como chegar →</a>`;
+  if (!l.foto) return `<div style="font:14px/1.4 system-ui,sans-serif;color:#1f2421;max-width:230px">${info}</div>`;
+  return `<div style="font:14px/1.4 system-ui,sans-serif;color:#1f2421;display:flex;gap:10px;align-items:flex-start;max-width:280px">
+    <div style="flex:none;width:76px">
+      <img src="${l.foto}" alt="" style="display:block;width:76px;height:76px;object-fit:cover;border-radius:8px">
+      ${l.fotoAutor ? `<div style="font-size:9px;line-height:1.2;color:#5d655f;margin-top:3px">Foto: ${esc(l.fotoAutor)}</div>` : ""}
+    </div>
+    <div style="min-width:0">${info}</div></div>`;
+}
+async function horario(l, lugar) {  // "Aberto agora" e o horário de hoje, como o Google tem
+  const dias = lugar.regularOpeningHours?.weekdayDescriptions;  // começa na segunda-feira
+  if (dias && dias.length === 7) l.hoje = "Hoje: " + dias[(new Date().getDay() + 6) % 7].split(": ").slice(1).join(": ");
+  const a = abertoAgora(lugar);
+  if (a !== null) l.aberto = a;
+}
+async function abrirBalao(m, l) {  // tocar no pino: foto, nome, distância, nota e o caminho, em cima do mapa
+  balao = balao || new google.maps.InfoWindow();
+  balao.setContent(conteudoBalao(l));
+  balao.open({map: mapa, anchor: m});
+  if (l.fotoBuscada) return;
+  l.fotoBuscada = true;  // a foto só é buscada no toque (cada busca de foto custa), e uma vez por lugar
+  try {
+    const {Place} = await google.maps.importLibrary("places");
+    let fotos = [];
+    if (l.id) {
+      const lugar = new Place({id: l.id});
+      await lugar.fetchFields({fields: ["photos", "regularOpeningHours", "utcOffsetMinutes", "businessStatus"]});
+      fotos = lugar.photos || [];
+      await horario(l, lugar);
+    } else if (l.lat != null) {
+      // lugar do nosso guia (praia, trilha...): acha no Google pelo nome, perto do ponto que temos
+      const {places} = await Place.searchByText({textQuery: l.nome, fields: ["location", "photos", "regularOpeningHours", "utcOffsetMinutes", "businessStatus"], maxResultCount: 3,
+        locationBias: {center: {lat: l.lat, lng: l.lon}, radius: 2000}, language: "pt-BR"});
+      const perto = (places || []).find(p => p.location && Math.abs(p.location.lat() - l.lat) < 0.02
+                                              && Math.abs(p.location.lng() - l.lon) < 0.02);
+      fotos = perto ? (perto.photos || []) : [];
+      if (perto) await horario(l, perto);
+    }
+    const f = fotos[0];
+    if (!f) { if (balao.getAnchor() === m) balao.setContent(conteudoBalao(l)); return; }
+    l.foto = f.getURI({maxWidth: 200, maxHeight: 200});
+    l.fotoAutor = (f.authorAttributions || [])[0]?.displayName || "";
+    if (balao.getAnchor() === m) balao.setContent(conteudoBalao(l));
+  } catch (e) { console.warn(e); }
+}
+function conteudoPousada(P) {  // foto grande em cima, nome, descrição, endereço e links
+  return `<div style="font:14px/1.45 system-ui,sans-serif;color:#1f2421;width:250px">
+    ${P.foto ? `<img src="${esc(P.foto)}" alt="" style="display:block;width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:8px">` : ""}
+    ${P.fotoAutor ? `<div style="font-size:9px;color:#5d655f;margin:-5px 0 6px">Foto: ${esc(P.fotoAutor)}</div>` : ""}
+    <b style="font-size:15px">${esc(P.nome)}</b>
+    ${P.descricao ? `<br>${esc(P.descricao)}` : ""}
+    ${P.endereco ? `<br><span style="color:#5d655f">📍 ${esc(P.endereco)}</span>` : ""}
+    ${P.instagram ? `<br><a href="https://exemplo.com.br/"@", ""))}" target="_blank" rel="noopener" style="color:#2f6f5e">${esc(P.instagram)}</a>` : ""}
+    ${P.site ? `<br><a href="${esc(P.site)}" target="_blank" rel="noopener" style="color:#2f6f5e">Site</a>` : ""}
+    <br><a href="https://exemplo.com.br/" target="_blank" rel="noopener" style="color:#2f6f5e;font-weight:600">Como chegar →</a></div>`;
+}
+async function abrirPousada(m) {  // tocar na casinha: as informações da pousada com a foto
+  const P = D.pousada;
+  balao = balao || new google.maps.InfoWindow();
+  balao.setContent(conteudoPousada(P));
+  balao.open({map: mapa, anchor: m});
+  if (P.foto || P.fotoBuscada) return;
+  P.fotoBuscada = true;  // sem foto no cadastro: usa a primeira foto do Google da própria pousada
+  try {
+    const {Place} = await google.maps.importLibrary("places");
+    const {places} = await Place.searchByText({textQuery: P.nome, fields: ["location", "photos"], maxResultCount: 3,
+      locationBias: {center: centro, radius: 1000}, language: "pt-BR"});
+    const perto = (places || []).find(p => p.location && Math.abs(p.location.lat() - P.lat) < 0.01 && Math.abs(p.location.lng() - P.lon) < 0.01);
+    const f = perto && (perto.photos || [])[0];
+    if (!f) return;
+    P.foto = f.getURI({maxWidth: 500, maxHeight: 300});
+    P.fotoAutor = (f.authorAttributions || [])[0]?.displayName || "";
+    if (balao.getAnchor() === m) balao.setContent(conteudoPousada(P));
+  } catch (e) { console.warn(e); }
+}
+const cache = {};
+function pino(cor, emoji) {  // bolinha com a cor e o ícone da categoria
+  const svg = `<svg xmlns="https://exemplo.com.br/" width="34" height="34"><circle cx="17" cy="17" r="15" fill="${cor}" stroke="white" stroke-width="2.5"/><text x="17" y="22.5" font-size="15" text-anchor="middle">${emoji}</text></svg>`;
+  return {url: "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg),
+          scaledSize: new google.maps.Size(34, 34), anchor: new google.maps.Point(17, 17)};
+}
+// busca livre: o ícone vem do tipo do lugar no Google
+const POR_TIPO = [
+  [["cafe", "coffee_shop"], "☕", "#8b5a2b"], [["restaurant", "pizza_restaurant", "seafood_restaurant", "fast_food_restaurant", "meal_takeaway"], "🍽️", "#dd6b20"],
+  [["bakery"], "🥐", "#b7791f"], [["supermarket", "grocery_store", "convenience_store", "market", "food_store"], "🛒", "#2f7d4f"],
+  [["pharmacy", "drugstore"], "💊", "#c53030"], [["ice_cream_shop", "dessert_shop", "acai_shop"], "🍦", "#d53f8c"],
+  [["bar", "pub", "night_club", "wine_bar"], "🍺", "#9c4221"], [["clothing_store", "shoe_store", "jewelry_store"], "👕", "#805ad5"],
+  [["laundry"], "🧺", "#3182ce"], [["gas_station"], "⛽", "#4a5568"], [["atm", "bank"], "🏧", "#2c7a7b"],
+  [["hospital", "doctor", "medical_lab", "dentist"], "🏥", "#e53e3e"], [["beach"], "🏖️", "#2b6cb0"],
+  [["tourist_attraction", "hiking_area", "park", "national_park"], "🥾", "#2b6cb0"],
+  [["sporting_goods_store", "surf_shop"], "🏄", "#0987a0"]];
+function visual(l, cat) {
+  const c = l.categoria || cat;
+  if (D.cores[c]) return [D.cores[c], D.icones[c] || "📍"];
+  const achado = POR_TIPO.find(([tipos]) => tipos.includes(l.tipo));
+  return achado ? [achado[2], achado[1]] : ["#4a5568", "📍"];
+}
+function cartao(l, cat, i) {
+  const rota = l.lat != null ? `https://exemplo.com.br/
+    : (l.url || `https://exemplo.com.br/ + " " + (l.endereco || ""))}`);
+  return `<article class="lugar" id="l-${i}"><h3><span>${visual(l, cat)[1]} ${esc(l.nome)}</span><span class="dist">${esc(l.dist)}</span></h3>
+    ${l.descricao ? `<p>${esc(l.descricao)}</p>` : ""}${l.endereco ? `<p>📍 ${esc(l.endereco)}</p>` : ""}
+    ${l.horario ? `<p>🕒 ${esc(l.horario)}</p>` : ""}${l.nota ? `<p>⭐ ${esc(l.nota)} no Google</p>` : ""}
+    ${l.aberto != null || l.hoje ? `<p><span style="color:${l.aberto ? "var(--destaque)" : "#e05252"};font-weight:600">${l.aberto === true ? "Aberto agora" : l.aberto === false ? "Fechado agora" : ""}</span>${l.hoje ? ` <span>${l.aberto != null ? "· " : ""}${esc(l.hoje)}</span>` : ""}</p>` : ""}
+    ${l.temporada ? `<span class="tag">Só na temporada</span>` : ""}
+    <div class="acoes"><a href="${rota}" target="_blank" rel="noopener">Como chegar →</a></div></article>`;
+}
+let porIndice = {};  // índice do card -> [pino, lugar], para o card levar o mapa até o lugar
+function focar(i) {
+  const par = porIndice[i];
+  if (!par) return;
+  mapa.panTo(par[0].getPosition());
+  mapa.setZoom(Math.max(mapa.getZoom(), 17));
+  abrirBalao(par[0], par[1]);
+  if (window.matchMedia("(max-width: 899px)").matches)  // no celular o mapa fica em cima: volta até ele
+    document.getElementById("mapa").scrollIntoView({behavior: "smooth", block: "start"});
+}
+function mostrar(lista, cat, busca = false) {
+  marcadores.forEach(m => m.setMap(null)); marcadores = []; porIndice = {};
+  const limites = new google.maps.LatLngBounds(centro);
+  lista.forEach((l, i) => {
+    if (l.lat == null) return;
+    const c = l.categoria || cat, perto = cat || busca || km(l.lat, l.lon) <= 4;  // guia: enquadra só o entorno
+    const [cor, icone] = visual(l, cat);
+    const m = new google.maps.Marker({position: {lat: l.lat, lng: l.lon}, map: mapa, title: l.nome, icon: pino(cor, icone)});
+    m.addListener("click", () => abrirBalao(m, l));
+    marcadores.push(m); porIndice[i] = [m, l]; if (perto) limites.extend(m.getPosition());
+  });
+  document.getElementById("lista").innerHTML = !lista.length
+    ? `<p class="vazio">Nada encontrado ${busca ? "com essa busca" : "nesta categoria"} perto da pousada.</p>`
+    : (cat || busca) ? lista.map((l, i) => cartao(l, l.categoria || cat, i)).join("")
+    : resumo(lista);
+  if (marcadores.length) mapa.fitBounds(limites, 40); else { mapa.setCenter(centro); mapa.setZoom(15); }
+}
+function resumo(lista) {  // guia: lista enxuta por categoria, nome e distância; tocar abre o caminho
+  const grupos = {};
+  lista.forEach((l, i) => (grupos[l.categoria] = grupos[l.categoria] || []).push([l, i]));
+  return Object.keys(D.cores).filter(c => grupos[c]).map(c => `<section class="grupo"><h2>${D.icones[c] || "📍"} ${esc(c)}</h2>
+    ${grupos[c].map(([l, i]) => `<a class="linha" id="l-${i}" target="_blank" rel="noopener"
+      href="${l.lat != null ? `https://exemplo.com.br/ : `https://exemplo.com.br/ + " " + (l.endereco || ""))}`}">
+      <span>${esc(l.nome)}</span><span class="d">${esc((l.dist || "").split(" · ")[0])}</span></a>`).join("")}</section>`).join("");
+}
+async function buscar(cat) {
+  if (cache[cat]) return cache[cat];
+  const {Place, SearchNearbyRankPreference} = await google.maps.importLibrary("places");
+  // duas buscas (a API devolve no máximo 20): as mais perto e as mais relevantes do raio de 10 km (ex.: Campo D'Una)
+  const pedir = ordem => Place.searchNearby({
+    fields: ["id", "displayName", "location", "formattedAddress", "googleMapsURI", "rating", "userRatingCount", "primaryType",
+      "regularOpeningHours", "utcOffsetMinutes", "businessStatus"],
+    locationRestriction: {center: centro, radius: 10000}, includedPrimaryTypes: D.tipos[cat], maxResultCount: 20,
+    rankPreference: ordem, language: "pt-BR"}).then(r => r.places).catch(() => []);
+  const listas = await Promise.all([pedir(SearchNearbyRankPreference.DISTANCE), pedir(SearchNearbyRankPreference.POPULARITY)]);
+  const unicos = new Map(); listas.flat().forEach(p => unicos.has(p.id) || unicos.set(p.id, p));
+  const places = [...unicos.values()];
+  if (!places.length) throw new Error("sem resultados");
+  return cache[cat] = await comHorario(places, places.map(p => {
+    const lat = p.location.lat(), lon = p.location.lng(), k = km(lat, lon);
+    return {id: p.id, tipo: p.primaryType, nome: p.displayName, lat, lon, k, dist: dist(k), endereco: p.formattedAddress, url: p.googleMapsURI,
+            nota: p.rating ? `${String(p.rating).replace(".", ",")} (${p.userRatingCount} avaliações)` : ""};
+  })).then(ls => semHospedagem(ls).sort((a, b) => a.k - b.k));
+}
+async function procurar(termo) {
+  const chave = "texto:" + termo.toLowerCase();
+  if (cache[chave]) return cache[chave];
+  const {Place, SearchByTextRankPreference} = await google.maps.importLibrary("places");
+  const {places} = await Place.searchByText({textQuery: termo, locationBias: {center: centro, radius: 10000},
+    fields: ["id", "displayName", "location", "formattedAddress", "googleMapsURI", "rating", "userRatingCount", "primaryType",
+      "regularOpeningHours", "utcOffsetMinutes", "businessStatus"],
+    maxResultCount: 20, rankPreference: SearchByTextRankPreference.DISTANCE, language: "pt-BR", region: "br"});
+  return cache[chave] = await comHorario(places, places.map(p => {
+    const lat = p.location.lat(), lon = p.location.lng(), k = km(lat, lon);
+    return {id: p.id, tipo: p.primaryType, nome: p.displayName, lat, lon, k, dist: dist(k), endereco: p.formattedAddress, url: p.googleMapsURI,
+            nota: p.rating ? `${String(p.rating).replace(".", ",")} (${p.userRatingCount} avaliações)` : ""};
+  })).then(ls => semHospedagem(ls).filter(l => l.k <= 13).sort((a, b) => a.k - b.k));
+}
+// outras hospedagens nunca aparecem no mapa do cliente
+const HOSPEDAGEM = /(^|_)(lodging|hotel|inn|guest_house|hostel|motel|bed_and_breakfast|resort|campground|camping|cottage|farmstay|private_guest_room)($|_)/;
+const semHospedagem = ls => ls.filter(l => !HOSPEDAGEM.test(l.tipo || ""));
+function abertoAgora(p) {  // calcula pelo horário do lugar (o isOpen() do Google só existe no beta)
+  if (p.businessStatus && p.businessStatus !== "OPERATIONAL") return false;
+  const periodos = p.regularOpeningHours?.periods;
+  if (!periodos || !periodos.length || p.utcOffsetMinutes == null) return null;
+  const agora = new Date(Date.now() + p.utcOffsetMinutes * 60000);  // relógio local do lugar, lido em UTC
+  const semana = 7 * 1440, min = agora.getUTCDay() * 1440 + agora.getUTCHours() * 60 + agora.getUTCMinutes();
+  return periodos.some(({open: a, close: f}) => {
+    if (!a) return false;
+    if (!f) return true;  // aberto 24 horas
+    const ini = a.day * 1440 + a.hour * 60 + a.minute;
+    let fim = f.day * 1440 + f.hour * 60 + f.minute;
+    if (fim <= ini) fim += semana;  // vira a meia-noite ou a semana
+    return (min >= ini && min < fim) || (min + semana >= ini && min + semana < fim);
+  });
+}
+async function comHorario(places, lugares) {  // "aberto agora" e horário de hoje de cada lugar da busca
+  const hoje = (new Date().getDay() + 6) % 7;  // a lista do Google começa na segunda
+  await Promise.all(places.map(async (p, i) => {
+    const dias = p.regularOpeningHours?.weekdayDescriptions;
+    if (dias && dias.length === 7) lugares[i].hoje = "Hoje: " + dias[hoje].split(": ").slice(1).join(": ");
+    const a = abertoAgora(p);
+    if (a !== null) lugares[i].aberto = a;
+  }));
+  return lugares;
+}
+let soAbertos = false, atual = {lista: [], cat: "", busca: false};
+function exibir(lista, cat, busca = false) {  // aplica o filtro "Abertos agora" antes de desenhar
+  atual = {lista, cat, busca};
+  const doGoogle = lista.some(l => l.id);
+  const vis = soAbertos && doGoogle ? lista.filter(l => l.aberto === true) : lista;
+  mostrar(vis, cat, busca);
+  const el = document.getElementById("lista");
+  if (soAbertos && !doGoogle)
+    el.insertAdjacentHTML("afterbegin", `<p class="vazio">"Abertos agora" vale para as categorias e a busca. Escolha uma acima.</p>`);
+  else if (soAbertos) {
+    const semHorario = lista.filter(l => l.aberto == null).length;
+    if (semHorario) el.insertAdjacentHTML("beforeend", `<p class="vazio">+${semHorario} sem horário informado no Google.</p>`);
+  }
+}
+async function escolher(cat) {
+  if (!cat) return exibir(D.lugares, "");
+  document.getElementById("lista").innerHTML = `<p class="vazio">Buscando no Google Maps…</p>`;
+  try { exibir(await buscar(cat), cat); }
+  catch (e) { console.warn(e); exibir(D.lugares.filter(l => l.categoria === cat), cat); }
+}
+async function iniciar() {
+  const {Map} = await google.maps.importLibrary("maps");
+  mapa = new Map(document.getElementById("mapa"), {center: centro, zoom: 15,
+    mapTypeControl: true, mapTypeControlOptions: {mapTypeIds: ["roadmap", "hybrid"],  // Mapa / Satélite (com nomes)
+      style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR, position: google.maps.ControlPosition.TOP_RIGHT},
+    streetViewControl: false, fullscreenControl: false, gestureHandling: "greedy", clickableIcons: false,
+    styles: [{featureType: "poi.business", stylers: [{visibility: "off"}]}, {featureType: "poi.attraction", elementType: "labels.icon", stylers: [{visibility: "off"}]}]});  // sem outras hospedagens nem comércios no fundo  // um dedo arrasta, pinça amplia (só no mapa)
+  const casa = new google.maps.Marker({position: centro, map: mapa, title: D.pousada.nome, zIndex: 999, icon: pino("#1f2421", "🏡")});
+  casa.addListener("click", () => abrirPousada(casa));
+  document.querySelector(".busca").addEventListener("submit", async ev => {
+    ev.preventDefault();
+    const termo = document.getElementById("termo").value.trim();
+    if (!termo) return;
+    document.getElementById("termo").blur();
+    document.querySelectorAll(".chip").forEach(x => x.classList.remove("ativo"));
+    document.getElementById("lista").innerHTML = `<p class="vazio">Buscando "${esc(termo)}" no Google Maps…</p>`;
+    try { exibir(await procurar(termo), "", true); }
+    catch (e) { console.warn(e); document.getElementById("lista").innerHTML = `<p class="vazio">Não deu para buscar agora. Tente de novo.</p>`; }
+  });
+  document.getElementById("abertos").addEventListener("click", e => {
+    soAbertos = !soAbertos;
+    e.currentTarget.setAttribute("aria-pressed", String(soAbertos));
+    e.currentTarget.classList.toggle("ativo", soAbertos);
+    exibir(atual.lista, atual.cat, atual.busca);
+  });
+  document.querySelectorAll(".chip[data-cat]").forEach(b => b.addEventListener("click", () => {
+    document.querySelectorAll(".chip[data-cat]").forEach(x => x.classList.toggle("ativo", x === b));
+    escolher(b.dataset.cat);
+  }));
+  document.getElementById("lista").addEventListener("click", e => {  // tocar no card (fora do link) mostra o lugar no mapa
+    const card = e.target.closest("article.lugar");
+    if (!card || e.target.closest("a")) return;
+    focar(Number(card.id.slice(2)));
+  });
+  escolher("");
+}
+(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://exemplo.com.br/)=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({key: "{{CHAVE_MAPS}}", v: "weekly", language: "pt-BR", region: "BR"});
+// iPhone ignora user-scalable=no: bloqueia a pinça e o toque duplo fora do mapa
+document.addEventListener("gesturestart", e => { if (!e.target.closest?.("#mapa")) e.preventDefault(); }, {passive: false});
+let ultimoToque = 0;
+document.addEventListener("touchend", e => {
+  const agora = Date.now();
+  if (agora - ultimoToque < 300 && !e.target.closest?.("#mapa, a, button, input")) e.preventDefault();
+  ultimoToque = agora;
+}, {passive: false});
+iniciar();
+</script>
+</body>
+</html>
